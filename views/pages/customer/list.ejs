@@ -1,0 +1,32 @@
+<%- include('../../fragments/header.ejs')%>
+        <main>
+            <h2>Customers List</h2>
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th class="hideme">E-mail</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% for(let customer of customers) {%>
+                    <tr>
+                        <td><%=customer.firstName%></td>
+                        <td><%=customer.lastName%></td>
+                        <td class="hideme"><%=customer.email%></td>
+                        <td>
+                            <ul class="list-actions">
+                                <li><a href="/customer/details/<%=customer._id%>" class="list-actions-button-details">Details</a></li>
+                                <li><a href="/customer/edit/<%=customer._id%>" class="list-actions-button-edit">Edit</a></li>
+                                <li><a href="/customer/delete/<%=customer._id%>" class="list-actions-button-delete">Delete</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                <%}%>
+                </tbody>
+            </table>
+            <p><a href="customer/add" class="button-add">Add new customer</a></p>
+        </main>
+<%- include('../../fragments/footer.ejs')%>

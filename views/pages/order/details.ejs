@@ -1,0 +1,33 @@
+<%- include('../../fragments/header.ejs')%>
+<main>
+    <h2>Order Details</h2>
+    <form class="form">
+        
+            <label for="customer">Customer: </label>
+            <input type="text" name="customer" id="customer" value="Jan Kowalski" disabled />
+            <span></span>
+
+            <label for="car">Car: </label>
+            <input type="text" name="car" id="car" value="BMW F82" disabled />
+            <span></span>
+
+            <label for="dateFrom">Date From: </label>
+            <input type="date" name="dateFrom" id="dateFrom" value="2022-03-23" disabled/>
+            <span></span>
+
+            <label for="dateTo">Date To: </label>
+            <input type="date" name="dateTo" id="dateTo" value="2022-03-22" disabled/>
+            <span></span>
+
+            <label for="price">Price: </label>
+            <input type="number" name="price" id="price" value="2000" disabled/>
+            <span></span>
+        </form>
+        <br>
+        <div>
+            <a href="form-edit.ejs" class="list-actions-button-edit">Edit</a>
+            <a href="/order" class="list-actions-button-details">Back</a>
+        </div>
+    
+</main>
+<%- include('../../fragments/footer.ejs')%>

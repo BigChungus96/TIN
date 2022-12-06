@@ -1,0 +1,59 @@
+<%- include('../../fragments/header.ejs')%>
+<main>
+    <h2>Car Details</h2>
+    <form class="form">
+        
+                <label for="carBrand">Car Brand: </label>
+                <input type="text" name="carBrand" id="carBrand" value="BMW" disabled />
+                <span></span>
+
+                <label for="carModel">Model: </label>
+                <input type="text" name="carModel" id="carModel" value="F82" disabled />
+                <span></span>
+
+                <label for="year">Year of Production: </label>
+                <input type="number" name="year" id="year" value="2018" disabled/>
+                <span></span>
+        
+        <div>
+            <a href="form-edit.ejs" class="list-actions-button-edit">Edit</a>
+        </div>
+    </form>
+        <h3>Order Details</h3>
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Date From</th>
+                <th>Date To</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Jan Kowalski</td>
+                <td>2022-02-02</td>
+                <td>2022-02-22</td>
+                <td>2000</td>
+            </tr>
+            <tr>
+                <td>Szymon Godziek</td>
+                <td>2022-02-12</td>
+                <td>2022-02-24</td>
+                <td>1500</td>
+            </tr>
+            <tr>
+                <td>Aaron Gwin</td>
+                <td>2022-03-12</td>
+                <td>2022-04-01</td>
+                <td>3000</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <div>
+            <a href="list.ejs" class="list-actions-button-details">Back</a>
+        </div>
+
+</main>
+<%- include('../../fragments/footer.ejs')%>

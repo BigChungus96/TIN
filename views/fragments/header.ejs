@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Rental Demo</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+</head>
+<body>
+<header>
+    <h1>Car Rental</h1>
+    <img src="../../images/carrentallogo.jpg" alt="Car Rental Logo">
+</header>
+<nav>
+    <ul>
+        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Main Page</a></li>
+        <li><a href="/customer" class="<%= navLocation == 'customer' ? 'active' : ''%>">Customer</a></li>
+        <li><a href="/order" class="<%= navLocation == 'order' ? 'active' : ''%>">Order</a></li>
+        <li><a href="/car" class="<%= navLocation == 'car' ? 'active' : ''%>">Car</a></li>
+    </ul>
+</nav>

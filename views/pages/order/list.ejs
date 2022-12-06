@@ -1,0 +1,36 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Order List</h2>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Car</th>
+            <th class="hideme">Date From</th>
+            <th class="hideme">Date To</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for(let order of orders){ %>
+        <tr>
+            <td><%= order.customer %></td>
+            <td><%= order.car %></td>
+            <td class=hideme"><%= order.dateFrom %></td>
+            <td class=hideme"><%= order.dateTo %></td>
+            <td><%= order.price %></td>
+            <td>
+                <ul class="list-actions">
+                    <li><a href="/order/details/<%=order._id%>" class="list-actions-button-details">Details</a></li>
+                    <li><a href="/order/edit/<%=order._id%>" class="list-actions-button-edit">Edit</a></li>
+                    <li><a href="/order/delete/<%=order._id%>" class="list-actions-button-delete">Delete</a></li>
+                </ul>
+            </td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <p><a href="/order/add" class="button-add">Add new order</a></p>
+</main>
+<%- include('../../fragments/footer.ejs') %>
