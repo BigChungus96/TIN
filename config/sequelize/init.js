@@ -5,9 +5,9 @@ const Car = require('../../model/sequelize/Car');
 const Order = require('../../model/sequelize/Order');
 
 module.exports = () => {
-    Customer.hasMany(Order, {
-        as: 'order',
-        foreignKey: {name: 'customer_id', allowNull: false},
+    Customer.hasMany(Order, {as: 'order', foreignKey: {
+        name: 'customer_id', allowNull: false
+        },
         constraints: true,
         onDelete: 'CASCADE'
     });
@@ -20,7 +20,7 @@ module.exports = () => {
     });
     Order.belongsTo(Car, {as: 'car', foreignKey: {name: 'car_id', allowNull: false}});
 
-    let allCustomer, allCar;
+    let allCustomers, allCars;
     return sequelize
         .sync({force: true})
         .then(() => {
@@ -41,7 +41,7 @@ module.exports = () => {
             }
         })
         .then(customers => {
-            allCustomer = customers;
+            allCustomers = customers;
             return Car.findAll();
         })
         .then(cars => {
@@ -59,32 +59,32 @@ module.exports = () => {
             }
         })
         .then(cars => {
-            allCar = cars;
+            allCars = cars;
             return Order.findAll();
         })
         .then(orders => {
             if (!orders || orders.length === 0) {
                 return Order.bulkCreate([
                     {
-                        customer_id: allCustomer[0]._id,
-                        car_id: allCar[0]._id,
+                        customer_id: allCustomers[0]._id,
+                        car_id: allCars[0]._id,
                         dateFrom: '2022-02-02',
-                        DateTo: '2022-02-22',
-                        Price: 2000
+                        dateTo: '2022-02-22',
+                        price: 2000
                     },
                     {
-                        customer_id: allCustomer[1]._id,
-                        car_id: allCar[1]._id,
+                        customer_id: allCustomers[1]._id,
+                        car_id: allCars[1]._id,
                         dateFrom: '2022-03-03',
-                        DateTo: '2022-03-14',
-                        Price: 3000
+                        dateTo: '2022-03-14',
+                        price: 3000
                     },
                     {
-                        customer_id: allCustomer[0]._id,
-                        car_id: allCar[2]._id,
+                        customer_id: allCustomers[0]._id,
+                        car_id: allCars[2]._id,
                         dateFrom: '2022-03-15',
-                        DateTo: '2022-03-18',
-                        Price: 1500
+                        dateTo: '2022-03-18',
+                        price: 1500
                     },
                 ]);
             } else {

@@ -7,9 +7,8 @@ exports.getCustomer=()=>{
 };
 
 exports.getCustomerById=(customerId)=>{
-    return Customer.findByPk(customerId,
+    return Customer.findByPk(customerId, {include:[
         {
-            include:[{
                 model:Order,
                 as: 'order',
                 include:[{

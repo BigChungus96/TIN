@@ -2,8 +2,8 @@ const CustomerRepository=require('../repository/sequelize/CustomerRepository');
 
 exports.getCustomer=(req,res,next)=>{
     CustomerRepository.getCustomer()
-        .then(customer=>{
-            res.status(200).json(customer);
+        .then(customers=>{
+            res.status(200).json(customers);
         })
         .catch(err=>{
             console.log(err);

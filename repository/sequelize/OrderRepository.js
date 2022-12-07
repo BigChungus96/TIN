@@ -36,7 +36,7 @@ exports.createOrder = (data) => {
         car_id: data.car_id,
         dateFrom: data.dateFrom,
         dateTo: data.dateTo,
-        Price: data.Price
+        price: data.price
     });
 };
 

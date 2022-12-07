@@ -6,7 +6,7 @@ const Customer=sequelize.define('Customer',{
         type:Sequelize.INTEGER,
         autoIncrement:true,
         allowNull:false,
-        primaryKey:true
+        primaryKey:true,
     },
     firstName:{
         type:Sequelize.STRING,
