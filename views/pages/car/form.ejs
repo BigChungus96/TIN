@@ -9,75 +9,82 @@
 
         <label for="carBrand">Car Brand: <span class="symbol-required">*</span></label>
         <input type="text" name="carBrand" id="carBrand" placeholder="2-60 znaków" value="<% car.carBrand %>"
-               class="<%= validationErrors.find(e=>e.path.includes('carBrand')) ? 'error-input' : '' %>"
-                <% (formMode == 'showDetails')?'disabled':'' %>/>
+               class="<%= validationErrors.find(e => e.path.includes('carBrand')) ? 'error-input' : '' %>"
+                <% (formMode == 'showDetails') ? 'disabled' : '' %>
+        />
         <span id="errorCarBrand" class="errors-text">
-            <% if (validationErrors.find(e=> e.path.includes('carBrand'))) { %>
-                <%= validationErrors.find(e=> e.path.includes('carBrand')).message %>
+            <% if (validationErrors.find(e => e.path.includes('carBrand'))) { %>
+                <%= validationErrors.find(e => e.path.includes('carBrand')).message %>
             <% } %>
         </span>
 
         <label for="carModel">Model: <span class="symbol-required">*</span></label>
         <input type="text" name="carModel" id="carModel" placeholder="2-60 znaków" value="<% car.carModel %>"
-               class="<%= validationErrors.find(e=>e.path.includes('carModel')) ? 'error-input' : '' %>"
-                <% (formMode == 'showDetails')?'disabled':'' %>/>
+               class="<%= validationErrors.find(e => e.path.includes('carModel')) ? 'error-input' : '' %>"
+                <% (formMode == 'showDetails') ? 'disabled' : '' %>
+        />
         <span id="errorCarModel" class="errors-text">
-            <% if (validationErrors.find(e=> e.path.includes('carModel'))) { %>
-                <%= validationErrors.find(e=> e.path.includes('carModel')).message %>
+            <% if (validationErrors.find(e => e.path.includes('carModel'))) { %>
+                <%= validationErrors.find(e => e.path.includes('carModel')).message %>
             <% } %>
         </span>
 
         <label for="year">Year of Production:</label>
-        <input type="number" name="year" id="year" placeholder="4 znaki" value="<%car.year%>"
-               class="<%= validationErrors.find(e=>e.path.includes('year')) ? 'error-input' : '' %>"
-                <%(formMode=='showDetails')?'disabled':''%>/>
+        <input type="number" name="year" id="year" placeholder="4 znaki" value="<% car.year %>"
+               class="<%= validationErrors.find(e => e.path.includes('year')) ? 'error-input' : '' %>"
+                <% (formMode == 'showDetails') ? 'disabled' : '' %>
+        />
         <span id="errorYear" class="errors-text">
-            <% if (validationErrors.find(e=> e.path.includes('year'))) { %>
-                <%= validationErrors.find(e=> e.path.includes('year')).message %>
+            <% if (validationErrors.find(e => e.path.includes('year'))) { %>
+                <%= validationErrors.find(e => e.path.includes('year')).message %>
             <% } %>
         </span>
 
-        <%if(formMode=='showDetails'){%>
+        <% if(formMode == 'showDetails'){ %>
             <div class="section-buttons">
-                <a href="/car/edit/<%=car._id%>" class="button-edit">Edit</a>
+                <a class="list-actions-button-edit" href="/car/edit/<%= car._id %>" class="button-edit">Edit</a>
             </div>
-        <%}%>
-
-        <%if (formMode=='showDetails'||formMode=='edit'){%>
-            <h2>
-                Car Details
-            </h2>
-            <table class="table-list">
-                <thead>
-                <tr>
-                    <th>Customer</th>
-                    <th>Date From</th>
-                    <th>Date To</th>
-                    <th>Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                <%for(let c of car.order){%>
-                    <tr>
-                        <td><a href="/car/details/<%=c.customer._id%>"><%=c.customer.name%></a></td>
-                        <td><%= c.dateFrom.toISOString().split('T')[0] %></td>
-                        <td><%= c.dateTo ? c.dateTo.toISOString().split('T')[0] : '' %></td>
-                        <td><%= c.price %></td>
-                    </tr>
-                <%}%>
-                </tbody>
-            </table>
-        <%}%>
-
-        <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text"></p>
-            <%if(formMode!='showDetails'){%>
-            <input class="form-button-submit" type="submit"value="<%=btnLabel%>"/>
-            <a href="/car" class="form-button-cancel">Cancel</a>
-            <%}else{%>
-                <a class="form-button-cancel" href="/car">Back</a>
-            <%}%>
-        </div>
+        <% } %>
     </form>
+    <% if (formMode == 'showDetails' || formMode == 'edit'){ %>
+        <h2>
+            Customer Details
+        </h2>
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Date From</th>
+                <th>Date To</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for(let c of car.order){ %>
+                <tr>
+                    <td>
+                        <a href="/car/details/<%= c.customer._id %>"><%= c.customer.firstName + ' ' + c.customer.lastName %></a>
+                    </td>
+                    <td><%= c.dateFrom.toISOString().split('T')[0] %></td>
+                    <td><%= c.dateTo ? c.dateTo.toISOString().split('T')[0] : '' %></td>
+                    <td><%= c.price %></td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <div class="form-buttons">
+        <p id="errorsSummary" class="errors-text"></p>
+
+        <% if(formMode != 'showDetails'){ %>
+            <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
+            <a href="/car" class="form-button-cancel">Cancel</a>
+        <% }else{ %>
+            <a class="form-button-cancel" href="/car">Back</a>
+        <% } %>
+    </div>
+
+
 </main>
 <%- include('../../fragments/footer.ejs') %>

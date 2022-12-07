@@ -26,7 +26,7 @@ exports.getCarById=(req,res,next)=>{
 exports.createCar=(req,res,next)=>{
     CarRepository.createCar(req.body)
         .then(newObj=>{
-            res.status(201).json(new Obj);
+            res.status(201).json(newObj);
     })
         .catch(err=>{
             if(!err.statusCode){

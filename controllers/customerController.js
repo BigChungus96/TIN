@@ -55,6 +55,17 @@ exports.addCustomer=(req,res,next)=>{
     CustomerRepository.createCustomer(customerData)
         .then(result=>{
             res.redirect('/customer');
+        })
+        .catch(err => {
+            res.render('pages/customer/form', {
+                customer: customerData,
+                pageTitle: 'Adding a customer',
+                formMode: 'createNew',
+                btnLabel: 'Add a customer',
+                formAction: '/customer/add',
+                navLocation: 'customer',
+                validationErrors: err.details
+            });
         });
 };
 exports.updateCustomer=(req,res,next)=>{

@@ -1,14 +1,18 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
     <script type="application/javascript" src="/js/validationCusForm.js"></script>
-    <h2><% pageTitle %></h2>
+    <h2>
+        <% pageTitle %>
+    </h2>
+
     <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
 
         <input type="hidden" name="_id" value="<%= customer._id %>">
 
         <label for="firstName">First Name: <span class="symbol-required">*</span></label>
         <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<% customer.firstName %>"
-                <% (formMode == 'showDetails')?'disabled':'' %>/>
+                <% (formMode == 'showDetails')?'disabled':'' %>
+        />
         <span id="errorFirstName" class="errors-text"></span>
 
         <label for="lastName">Last Name: <span class="symbol-required">*</span></label>
@@ -23,53 +27,50 @@
 
         <% if(formMode == 'showDetails'){ %>
             <div class="section-buttons">
-                <a href="/customer/edit/<%= customer._id %>" class="button-edit">Edit</a>
+                <a class="list-actions-button-edit" href="/customer/edit/<%= customer._id %>"
+                   class="button-edit">Edit</a>
             </div>
         <% } %>
-
-        <% if(formMode == 'showDetails' || formMode == 'edit'){ %>
-            <h2>
-                Customer Details
-            </h2>
-            <table class="table-list">
-                <thead>
-                <tr>
-                    <th>Car</th>
-                    <th>Date From</th>
-                    <th>Date To</th>
-                    <th>Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                <% for(let c of customer.order){ %>
-                    <tr>
-                        <td><a href="/car/details/<%= c.car._id %>"><%= c.car.name %></a></td>
-                        <td><%= c.dateFrom.toISOString().split('T')[0] %></td>
-                        <td><%= c.dateTo ? c.dateTo.toISOString().split('T')[0] : '' %></td>
-                        <td><%= c.price %></td>
-                    </tr>
-                <% } %>
-                </tbody>
-            </table>
-
-        <% } %>
-
-        <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text"></p>
-            <% if(formMode != 'showDetails'){ %>
-                <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
-                <a class="form-button-cancel" href="/customer">Cancel</a>
-            <% }else{ %>
-                <a class="form-button-cancel" href="/customer">Back</a>
-            <% } %>
-        </div>
-
-
-        <div>
-            <p id="errorsSummary" class="errors-text"></p>
-            <input type="submit" value="Submit" class="form-button-submit"/>
-            <a href="/customer" class="form-button-cancel">Cancel</a>
-        </div>
     </form>
+
+    <% if(formMode == 'showDetails' || formMode == 'edit'){ %>
+        <h2>
+            Car Details
+        </h2>
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th>Car</th>
+                <th>Date From</th>
+                <th>Date To</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for(let c of customer.order){ %>
+                <tr>
+                    <td><a href="/car/details/<%= c.car._id %>"><%= c.car.carBrand + ' ' + c.car.carModel %></a></td>
+                    <td><%= c.dateFrom.toISOString().split('T')[0] %></td>
+                    <td><%= c.dateTo ? c.dateTo.toISOString().split('T')[0] : '' %></td>
+                    <td><%= c.price %></td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+
+    <% } %>
+
+    <div class="form-buttons">
+        <p id="errorsSummary" class="errors-text"></p>
+
+        <% if(formMode != 'showDetails'){ %>
+            <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
+            <a href="/customer" class="form-button-cancel">Cancel</a>
+        <% }else{ %>
+            <a class="form-button-cancel" href="/customer">Back</a>
+        <% } %>
+    </div>
+
+
 </main>
 <%- include('../../fragments/footer.ejs') %>

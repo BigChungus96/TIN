@@ -27,7 +27,7 @@ exports.showEditCarForm = (req, res, next) => {
             res.render('pages/car/form', {
                 car: car,
                 formMode: 'edit',
-                pageTitle: 'Edit car',
+                pageTitle: 'Car Editing',
                 btnLabel: 'Edit car',
                 formAction: '/car/edit',
                 navLocation: 'car',
@@ -42,7 +42,7 @@ exports.showCarDetails = (req, res, next) => {
             res.render('pages/car/form', {
                 car: car,
                 formMode: 'showDetails',
-                pageTitle: 'car Details',
+                pageTitle: 'Car Details',
                 formAction: '',
                 navLocation: 'car',
                 validationErrors: []

@@ -3,7 +3,7 @@ const OrderRepository=require('../repository/sequelize/OrderRepository');
 exports.getOrder=(req,res,next)=>{
     OrderRepository.getOrders()
         .then(order=>{
-            res.status(200).json(car);
+            res.status(200).json(order);
         })
         .catch(err=>{
             console.log(err);
@@ -27,7 +27,7 @@ exports.getOrderById=(req,res,next)=>{
 exports.createOrder=(req,res,next)=>{
     OrderRepository.createOrder(req.body)
         .then(newObj =>{
-            res.status(201).json(newobj);
+            res.status(201).json(newObj);
         })
         .catch(err=>{
             if(!err.statusCode){
@@ -52,7 +52,7 @@ exports.updateOrder=(req,res,next)=>{
 }
 
 exports.deleteOrder=(req,res,next)=>{
-    const orderId=req.params.OrderId;
+    const orderId=req.params.orderId;
     OrderRepository.deleteOrder(orderId)
         .then(result=>{
             res.status(200).json({message:'Removed order',order:result});
