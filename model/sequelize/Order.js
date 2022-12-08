@@ -10,11 +10,21 @@ const Order=sequelize.define('Order',{
     },
     customer_id:{
         type:Sequelize.INTEGER,
-        allowNull:false
+        allowNull:false,
+        validate:{
+            notEmpty:{
+                msg:"Pole jest wymagane"
+            }
+        }
     },
     car_id:{
         type:Sequelize.INTEGER,
-        allowNull:false
+        allowNull:false,
+        validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            }
+        }
     },
     dateFrom:{
         type:Sequelize.DATE,
@@ -27,7 +37,12 @@ const Order=sequelize.define('Order',{
     },
     dateTo:{
         type:Sequelize.DATE,
-        allowNull:false
+        allowNull:false,
+        validate:{
+            notEmpty:{
+                msg:"Pole jest wymagane"
+            },
+        }
     },
     price:{
         type:Sequelize.DECIMAL(10,0),
@@ -40,6 +55,9 @@ const Order=sequelize.define('Order',{
                 args:[0,1000000],
                 msg:"Pole powinno być liczbą w zakresie od 0 do 1.000.000"
             },
+            isNumeric:{
+                msg:"Pole powinno zawierać liczbę"
+            }
         }
     }
 });

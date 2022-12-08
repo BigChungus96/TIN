@@ -8,7 +8,7 @@
         <input type="hidden" name="_id" value="<% car._id %>">
 
         <label for="carBrand">Car Brand: <span class="symbol-required">*</span></label>
-        <input type="text" name="carBrand" id="carBrand" placeholder="2-60 znaków" value="<% car.carBrand %>"
+        <input type="text" name="carBrand" id="carBrand" placeholder="2-60 znaków" value="<%= car.carBrand %>"
                class="<%= validationErrors.find(e => e.path.includes('carBrand')) ? 'error-input' : '' %>"
                 <% (formMode == 'showDetails') ? 'disabled' : '' %>
         />
@@ -19,7 +19,7 @@
         </span>
 
         <label for="carModel">Model: <span class="symbol-required">*</span></label>
-        <input type="text" name="carModel" id="carModel" placeholder="2-60 znaków" value="<% car.carModel %>"
+        <input type="text" name="carModel" id="carModel" placeholder="2-60 znaków" value="<%= car.carModel %>"
                class="<%= validationErrors.find(e => e.path.includes('carModel')) ? 'error-input' : '' %>"
                 <% (formMode == 'showDetails') ? 'disabled' : '' %>
         />
@@ -30,9 +30,9 @@
         </span>
 
         <label for="year">Year of Production:</label>
-        <input type="number" name="year" id="year" placeholder="4 znaki" value="<% car.year %>"
+        <input type="number" name="year" id="year" placeholder="4 znaki" value="<%= car.year %>"
                class="<%= validationErrors.find(e => e.path.includes('year')) ? 'error-input' : '' %>"
-                <% (formMode == 'showDetails') ? 'disabled' : '' %>
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>
         />
         <span id="errorYear" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('year'))) { %>
@@ -67,6 +67,8 @@
                     </td>
                     <td><%= c.dateFrom.toISOString().split('T')[0] %></td>
                     <td><%= c.dateTo ? c.dateTo.toISOString().split('T')[0] : '' %></td>
+
+                    <!--                    przy ponownym wyslaniu moze byc blad-->
                     <td><%= c.price %></td>
                 </tr>
             <% } %>
@@ -74,17 +76,18 @@
         </table>
     <% } %>
 
-    <div class="form-buttons">
-        <p id="errorsSummary" class="errors-text"></p>
+    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
 
-        <% if(formMode != 'showDetails'){ %>
-            <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
-            <a href="/car" class="form-button-cancel">Cancel</a>
-        <% }else{ %>
-            <a class="form-button-cancel" href="/car">Back</a>
-        <% } %>
-    </div>
-
+            <% if(formMode != 'showDetails'){ %>
+                <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
+                <a href="/car" class="form-button-cancel">Cancel</a>
+            <% }else{ %>
+                <a class="form-button-cancel" href="/car">Back</a>
+            <% } %>
+        </div>
+    </form>
 
 </main>
 <%- include('../../fragments/footer.ejs') %>

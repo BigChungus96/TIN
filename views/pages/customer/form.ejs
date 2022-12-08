@@ -10,8 +10,8 @@
         <input type="hidden" name="_id" value="<%= customer._id %>">
 
         <label for="firstName">First Name: <span class="symbol-required">*</span></label>
-        <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<% customer.firstName %>"
-                <% (formMode == 'showDetails')?'disabled':'' %>
+        <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= customer.firstName %>"
+                <%= (formMode == 'showDetails')?'disabled':'' %>
         />
         <span id="errorFirstName" class="errors-text"></span>
 
@@ -59,7 +59,7 @@
         </table>
 
     <% } %>
-
+<form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
     <div class="form-buttons">
         <p id="errorsSummary" class="errors-text"></p>
 
@@ -70,7 +70,7 @@
             <a class="form-button-cancel" href="/customer">Back</a>
         <% } %>
     </div>
-
+</form>
 
 </main>
 <%- include('../../fragments/footer.ejs') %>

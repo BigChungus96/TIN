@@ -12,6 +12,10 @@
             <% for(let i = 0;i < allCustomers.length;i++){let customer = allCustomers[i]; %>
             <option value="<%= customer._id %>" label="<%= customer.firstName + '' + customer.lastName %>"
                     <%= (order._id && customer._id.toString() == order.customer._id.toString()) ? 'selected' : '' %>></option>
+
+
+<!--            rcrdng-->
+
             <% } %>
         </select>
         <span id="errorCustomer" class="errors-text"></span>
@@ -28,19 +32,20 @@
 
         <label for="dateFrom">Date From: <span class="symbol-required">*</span></label>
         <input type="date" name="dateFrom" required id="dateFrom" value="<%= order.dateFrom %>"
-                <% (formMode == 'showDetails') ? 'disabled' : '' %>
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>
         />
+<!--        do daty uzyc funkcji formatuja date z poprzednich zajec-->
         <span id="errorDateFrom" class="errors-text"></span>
 
         <label for="dateTo">Date To: <span class="symbol-required">*</span></label>
         <input type="date" name="dateTo" id="dateTo" required value="<% order.dateTo %>"
-                <% (formMode == 'showDetails')?'disabled':'' %>
+                <%= (formMode == 'showDetails')?'disabled':'' %>
         />
         <span id="errorDateTo" class="errors-text"></span>
 
         <label for="price">Price: <span class="symbol-required">*</span></label>
         <input type="number" name="price" id="price" placeholder="0 - 1.000.000" required value="<% order.price %>"
-                <% (formMode == 'showDetails')?'disabled':'' %>
+                <%= (formMode == 'showDetails')?'disabled':'' %>
         />
         <span id="errorPrice" class="errors-text"></span>
     </form>

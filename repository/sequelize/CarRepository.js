@@ -23,14 +23,14 @@ exports.createCar=(newCarData)=>{
     return Car.create({
         carBrand:newCarData.carBrand,
         carModel:newCarData.carModel,
-        price:newCarData.price
+        year:newCarData.year
     });
 };
 
 exports.updateCar=(carId,carData)=>{
     const carBrand=carData.carBrand;
     const carModel=carData.carModel;
-    const price=carData.price;
+    const year=carData.year;
     return Car.update(carData,{where:{_id:carId}});
 };
 
