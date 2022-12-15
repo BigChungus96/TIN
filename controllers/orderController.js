@@ -3,7 +3,7 @@ const CarRepository = require('../repository/sequelize/CarRepository');
 const CustomerRepository = require('../repository/sequelize/CustomerRepository');
 
 exports.showOrderList = (req, res, next) => {
-    OrderRepository.getOrders()
+    OrderRepository.getOrder()
         .then(orders=>{
             res.render('pages/order/list',{
                 orders:orders,
@@ -33,9 +33,35 @@ exports.showAddOrderForm = (req, res, next) => {
             });
         });
 }
+// exports.showAddOrderForm=(req,res,next)=>{
+//     let allCustomers, allCars;
+//     OrderRepository.getOrder()
+//         .then(orders=>{
+//             allOrders=orders;
+//             return CustomerRepository.getCustomer();
+//         })
+//         .then(customers=>{
+//             allCustomers=customers;
+//             return CarRepository.getCar();
+//         })
+//             .then(cars => {
+//                 allCars = cars;
+//                 res.render('pages/order/form', {
+//                     order: {},
+//                     formMode: 'createNew',
+//                     allCustomers: allCustomers,
+//                     allCars: allCars,
+//                     pageTitle: 'New Order',
+//                     btnLabel: 'Add Order',
+//                     formAction: '/order/add',
+//                     navLocation: 'order',
+//                     validationErrors: []
+//                 });
+//             });
+// }
 exports.showEditOrderForm=(req,res,next)=>{
     const orderId=req.params.orderId;
-    OrderRepository.getOrdersById(orderId)
+    OrderRepository.getOrderById(orderId)
         .then(order=>{
             res.render('pages/order/form',{
                 order:order,
@@ -50,7 +76,7 @@ exports.showEditOrderForm=(req,res,next)=>{
 }
 exports.showOrderDetails = (req, res, next) => {
     const orderId=req.params.orderId;
-    OrderRepository.getOrdersById(orderId)
+    OrderRepository.getOrderById(orderId)
         .then(order=>{
             res.render('pages/order/form',{
                 order:order,
@@ -67,6 +93,17 @@ exports.addOrder=(req,res,next)=>{
     OrderRepository.createOrder(orderData)
         .then(result=>{
             res.redirect('/order');
+        })
+        .catch(err => {
+            res.render('pages/order/form', {
+                order: orderData,
+                pageTitle: 'Adding an order',
+                formMode: 'createNew',
+                btnLabel: 'Add an order',
+                formAction: '/order/add',
+                navLocation: 'order',
+                validationErrors: err.errors
+            });
         });
 };
 exports.updateOrder=(req,res,next)=>{
@@ -75,6 +112,17 @@ exports.updateOrder=(req,res,next)=>{
     OrderRepository.updateOrder(orderId,orderData)
         .then(result=>{
             res.redirect('/order');
+        })
+        .catch(err=>{
+            res.render('pages/order/form', {
+                order: orderData,
+                pageTitle: 'Updating an order',
+                formMode: 'edit',
+                btnLabel: 'Updating an order',
+                formAction: '/order/edit',
+                navLocation: 'order',
+                validationErrors: err.errors
+            });
         });
 };
 exports.deleteOrder=(req,res,next)=>{

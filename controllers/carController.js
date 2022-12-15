@@ -63,7 +63,7 @@ exports.addCar = (req, res, next) => {
                 btnLabel: 'Add a car',
                 formAction: '/car/add',
                 navLocation: 'car',
-                validationErrors: err.details
+                validationErrors: err.errors
             });
         });
 };
@@ -75,9 +75,16 @@ exports.updateCar = (req, res, next) => {
             res.redirect('/car');
         })
         .catch(err=>{
-            error=err;
-            return CarRepository.getCarById(carId)
-        })
+            res.render('pages/car/form', {
+                car: carData,
+                pageTitle: 'Updating a car',
+                formMode: 'edit',
+                btnLabel: 'Updating a car',
+                formAction: '/car/edit',
+                navLocation: 'car',
+                validationErrors: err.errors
+            });
+        });
 };
 exports.deleteCar = (req, res, next) => {
     const carId = req.params.carId;

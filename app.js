@@ -8,6 +8,12 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
+const fmt=require('./public/js/utils/dateFormatting');
+app.use((req,res,next)=>{
+    res.locals.fmt=fmt;
+    next();
+});
+
 const customerRouter=require('./routes/customerRoute');
 const carRouter=require('./routes/carRoute');
 const orderRouter=require('./routes/orderRoute');

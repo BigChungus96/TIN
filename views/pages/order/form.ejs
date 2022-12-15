@@ -6,48 +6,73 @@
 
         <input type="hidden" name="_id" value="<%= order._id %>">
 
-        <label for="customer">Customer: <span class="symbol-required">*</span></label>
-        <select id="customer" name="customer" required <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+
+        <label for="customer_id">Customer: <span class="symbol-required">*</span></label>
+        <select id="customer_id" name="customer_id" required
+                class="<%= validationErrors.find(e => e.path.includes('customer')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
             <option value="" selected>--Choose customer--</option>
             <% for(let i = 0;i < allCustomers.length;i++){let customer = allCustomers[i]; %>
-            <option value="<%= customer._id %>" label="<%= customer.firstName + '' + customer.lastName %>"
-                    <%= (order._id && customer._id.toString() == order.customer._id.toString()) ? 'selected' : '' %>></option>
-
-
-<!--            rcrdng-->
-
+            <option value="<%= customer._id %>" label="<%= customer.firstName + ' ' + customer.lastName %>"
+                    <%= (customer._id.toString() == order.customer_id.toString()) ? 'selected' : '' %>></option>
             <% } %>
         </select>
-        <span id="errorCustomer" class="errors-text"></span>
+        <span id="errorCustomer" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('customer_id'))) { %>
+                <%= validationErrors.find(e => e.path.includes('customer_id')).message %>
+            <% } %>
+        </span>
 
-        <label for="car">Car: <span class="symbol-required">*</span></label>
-        <select name="car" id="car" required <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+
+        <label for="car_id">Car: <span class="symbol-required">*</span></label>
+        <select name="car_id" id="car_id" required
+                class="<%= validationErrors.find(e => e.path.includes('car')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
             <option value="" selected>--Choose car--</option>
             <% for(let i = 0;i < allCars.length;i++){let car = allCars[i]; %>
-            <option value="<%= car._id %>" label="<%= car.carBrand + '' + car.carModel %>"
-                    <%= (order._id && car._id.toString() == order.car._id.toString()) ? 'selected' : '' %>></option>
+            <option value="<%= car._id %>" label="<%= car.carBrand + ' ' + car.carModel %>"
+                    <%= (car._id.toString() == order.car_id.toString()) ? 'selected' : '' %>></option>
             <% } %>
         </select>
-        <span id="errorCar" class="errors-text"></span>
+        <span id="errorCar" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('car_id'))) { %>
+                <%= validationErrors.find(e => e.path.includes('car_id')).message %>
+            <% } %>
+        </span>
+
 
         <label for="dateFrom">Date From: <span class="symbol-required">*</span></label>
-        <input type="date" name="dateFrom" required id="dateFrom" value="<%= order.dateFrom %>"
+        <input type="date" name="dateFrom" required id="dateFrom" value="<%= fmt.formatDate(order.dateFrom) %>"
+               class="<%= validationErrors.find(e => e.path.includes('dateFrom')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>
         />
-<!--        do daty uzyc funkcji formatuja date z poprzednich zajec-->
-        <span id="errorDateFrom" class="errors-text"></span>
+        <span id="errorDateFrom" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('dateFrom'))) { %>
+                <%= validationErrors.find(e => e.path.includes('dateFrom')).message %>
+            <% } %>
+        </span>
 
         <label for="dateTo">Date To: <span class="symbol-required">*</span></label>
-        <input type="date" name="dateTo" id="dateTo" required value="<% order.dateTo %>"
-                <%= (formMode == 'showDetails')?'disabled':'' %>
+        <input type="date" name="dateTo" id="dateTo" required value="<%= fmt.formatDate(order.dateTo) %>"
+               class="<%= validationErrors.find(e => e.path.includes('dateTo')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>
         />
-        <span id="errorDateTo" class="errors-text"></span>
+        <span id="errorDateTo" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('dateTo'))) { %>
+                <%= validationErrors.find(e => e.path.includes('dateTo')).message %>
+            <% } %>
+        </span>
 
         <label for="price">Price: <span class="symbol-required">*</span></label>
         <input type="number" name="price" id="price" placeholder="0 - 1.000.000" required value="<% order.price %>"
-                <%= (formMode == 'showDetails')?'disabled':'' %>
+               class="<%= validationErrors.find(e => e.path.includes('price')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>
         />
-        <span id="errorPrice" class="errors-text"></span>
+        <span id="errorPrice" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('price'))) { %>
+                <%= validationErrors.find(e => e.path.includes('price')).message %>
+            <% } %>
+        </span>
     </form>
     <% if(formMode == 'showDetails'){ %>
         <div>
@@ -56,16 +81,17 @@
     <% } %>
 
     <!--        details....customer,car,dateFrom,dateTo,price-->
-
-    <div class="form-buttons">
-        <p id="errorsSummary" class="errors-text"></p>
-        <% if(formMode != 'showDetails'){ %>
-            <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
-            <a class="form-button-cancel" href="/customer">Cancel</a>
-        <% }else{ %>
-            <a class="form-button-cancel" href="/customer">Back</a>
-        <% } %>
-    </div>
+    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if(formMode != 'showDetails'){ %>
+                <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
+                <a class="form-button-cancel" href="/customer">Cancel</a>
+            <% }else{ %>
+                <a class="form-button-cancel" href="/customer">Back</a>
+            <% } %>
+        </div>
+    </form>
 
 </main>
 <%- include('../../fragments/footer.ejs') %>

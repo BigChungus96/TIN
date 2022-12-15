@@ -17,9 +17,8 @@
         <tr>
             <td><%= order.customer.firstName+' '+order.customer.lastName %></td>
             <td><%= order.car.carBrand+' '+order.car.carModel%></td>
-            <td class=hideme"><%= order.dateFrom %></td>
-<!--            formatowanie daty-->
-            <td class=hideme"><%= order.dateTo %></td>
+            <td class=hideme"><%= fmt.formatDate(order.dateFrom) %></td>
+            <td class=hideme"><%= fmt.formatDate(order.dateTo) %></td>
             <td><%= order.price %></td>
             <td>
                 <ul class="list-actions">

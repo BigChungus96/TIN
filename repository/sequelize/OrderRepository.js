@@ -4,7 +4,7 @@ const Customer = require('../../model/sequelize/Customer');
 const Car = require('../../model/sequelize/Car');
 const Order = require('../../model/sequelize/Order');
 
-exports.getOrders = () => {
+exports.getOrder = () => {
     return Order.findAll({include: [
             {
                 model: Customer,
@@ -16,7 +16,7 @@ exports.getOrders = () => {
             }]
     });
 };
-exports.getOrdersById = (orderId) => {
+exports.getOrderById = (orderId) => {
     return Order.findByPk(orderId, {include: [
             {
                 model: Customer,

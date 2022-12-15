@@ -3,15 +3,14 @@
     <script type="application/javascript" src="/js/validateCarForm.js"></script>
     <h2><%= pageTitle %></h2>
 
-    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+    <form class="form" method="post" action="<%= formAction %>" novalidate >
 
         <input type="hidden" name="_id" value="<% car._id %>">
 
         <label for="carBrand">Car Brand: <span class="symbol-required">*</span></label>
-        <input type="text" name="carBrand" id="carBrand" placeholder="2-60 znaków" value="<%= car.carBrand %>"
+        <input type="text" name="carBrand" id="carBrand" placeholder="2-60 znaków" required value="<%= car.carBrand %>"
                class="<%= validationErrors.find(e => e.path.includes('carBrand')) ? 'error-input' : '' %>"
-                <% (formMode == 'showDetails') ? 'disabled' : '' %>
-        />
+                <% (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorCarBrand" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('carBrand'))) { %>
                 <%= validationErrors.find(e => e.path.includes('carBrand')).message %>
@@ -19,7 +18,7 @@
         </span>
 
         <label for="carModel">Model: <span class="symbol-required">*</span></label>
-        <input type="text" name="carModel" id="carModel" placeholder="2-60 znaków" value="<%= car.carModel %>"
+        <input type="text" name="carModel" id="carModel" placeholder="2-60 znaków" required value="<%= car.carModel %>"
                class="<%= validationErrors.find(e => e.path.includes('carModel')) ? 'error-input' : '' %>"
                 <% (formMode == 'showDetails') ? 'disabled' : '' %>
         />
@@ -63,7 +62,7 @@
             <% for(let c of car.order){ %>
                 <tr>
                     <td>
-                        <a href="/car/details/<%= c.customer._id %>"><%= c.customer.firstName + ' ' + c.customer.lastName %></a>
+                        <a href="/customer/details/<%= c.customer._id %>"><%= c.customer.firstName + ' ' + c.customer.lastName %></a>
                     </td>
                     <td><%= c.dateFrom.toISOString().split('T')[0] %></td>
                     <td><%= c.dateTo ? c.dateTo.toISOString().split('T')[0] : '' %></td>

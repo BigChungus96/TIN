@@ -80,7 +80,7 @@ module.exports = () => {
                         price: 3000
                     },
                     {
-                        customer_id: allCustomers[0]._id,
+                        customer_id: allCustomers[2]._id,
                         car_id: allCars[2]._id,
                         dateFrom: '2022-03-15',
                         dateTo: '2022-03-18',

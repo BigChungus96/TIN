@@ -1,7 +1,7 @@
 const OrderRepository=require('../repository/sequelize/OrderRepository');
 
 exports.getOrder=(req,res,next)=>{
-    OrderRepository.getOrders()
+    OrderRepository.getOrder()
         .then(order=>{
             res.status(200).json(order);
         })
@@ -12,7 +12,7 @@ exports.getOrder=(req,res,next)=>{
 
 exports.getOrderById=(req,res,next)=>{
     const orderId=req.params.orderId;
-    OrderRepository.getOrdersById(orderId)
+    OrderRepository.getOrderById(orderId)
         .then(order=>{
             if(!order){
                 res.status(404).json({

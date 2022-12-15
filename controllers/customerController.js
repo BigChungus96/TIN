@@ -64,17 +64,28 @@ exports.addCustomer=(req,res,next)=>{
                 btnLabel: 'Add a customer',
                 formAction: '/customer/add',
                 navLocation: 'customer',
-                validationErrors: err.details
+                validationErrors: err.errors
             });
         });
 };
 exports.updateCustomer=(req,res,next)=>{
-    const customerId=req.body._id;
     const customerData={...req.body};
-    CustomerRepository.updateCustomer(customerId,customerData)
+    const customerId=req.body._id;
+    CustomerRepository.updateCustomer(customerId, customerData)
         .then(result=>{
             res.redirect('/customer');
-        });
+        })
+        .catch(err=>{
+            res.render('pages/customer/form', {
+                customer: customerData,
+                pageTitle: 'Updating a customer',
+                formMode: 'edit',
+                btnLabel: 'Updating a customer',
+                formAction: '/customer/edit',
+                navLocation: 'customer',
+                validationErrors: err.errors
+            })
+        })
 };
 exports.deleteCustomer=(req,res,next)=>{
     const customerId=req.params.customerId;
