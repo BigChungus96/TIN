@@ -33,39 +33,24 @@ exports.showAddOrderForm = (req, res, next) => {
             });
         });
 }
-// exports.showAddOrderForm=(req,res,next)=>{
-//     let allCustomers, allCars;
-//     OrderRepository.getOrder()
-//         .then(orders=>{
-//             allOrders=orders;
-//             return CustomerRepository.getCustomer();
-//         })
-//         .then(customers=>{
-//             allCustomers=customers;
-//             return CarRepository.getCar();
-//         })
-//             .then(cars => {
-//                 allCars = cars;
-//                 res.render('pages/order/form', {
-//                     order: {},
-//                     formMode: 'createNew',
-//                     allCustomers: allCustomers,
-//                     allCars: allCars,
-//                     pageTitle: 'New Order',
-//                     btnLabel: 'Add Order',
-//                     formAction: '/order/add',
-//                     navLocation: 'order',
-//                     validationErrors: []
-//                 });
-//             });
-// }
 exports.showEditOrderForm=(req,res,next)=>{
     const orderId=req.params.orderId;
-    OrderRepository.getOrderById(orderId)
+    let allCustomers,allCars;
+    CustomerRepository.getCustomer()
+        .then(customers=>{
+            allCustomers=customers;
+            return CarRepository.getCar();
+        })
+        .then(cars=>{
+            allCars=cars;
+            return OrderRepository.getOrderById(orderId)
+        })
         .then(order=>{
             res.render('pages/order/form',{
                 order:order,
                 formMode:'edit',
+                allCustomers: allCustomers,
+                allCars: allCars,
                 pageTitle:'Order Editing',
                 btnLabel:'Edit Order',
                 formAction:'/order/edit',
@@ -76,11 +61,22 @@ exports.showEditOrderForm=(req,res,next)=>{
 }
 exports.showOrderDetails = (req, res, next) => {
     const orderId=req.params.orderId;
-    OrderRepository.getOrderById(orderId)
+    let allCustomers,allCars;
+    CustomerRepository.getCustomer()
+        .then(customers=>{
+            allCustomers=customers;
+            return CarRepository.getCar();
+        })
+        .then(cars=>{
+            allCars=cars;
+            return OrderRepository.getOrderById(orderId)
+        })
         .then(order=>{
             res.render('pages/order/form',{
                 order:order,
                 formMode:'showDetails',
+                allCustomers: allCustomers,
+                allCars: allCars,
                 pageTitle:'Order Details',
                 formAction:'',
                 navLocation:'order',
@@ -90,15 +86,26 @@ exports.showOrderDetails = (req, res, next) => {
 }
 exports.addOrder=(req,res,next)=>{
     const orderData={...req.body};
+    let allCustomers,allCars;
+
     OrderRepository.createOrder(orderData)
         .then(result=>{
             res.redirect('/order');
+        })
+        .then(customers=>{
+            allCustomers=customers;
+            return CarRepository.getCar()
+        })
+        .then(cars=>{
+            allCars=cars;
         })
         .catch(err => {
             res.render('pages/order/form', {
                 order: orderData,
                 pageTitle: 'Adding an order',
                 formMode: 'createNew',
+                allCustomers: allCustomers,
+                allCars: allCars,
                 btnLabel: 'Add an order',
                 formAction: '/order/add',
                 navLocation: 'order',
@@ -109,15 +116,25 @@ exports.addOrder=(req,res,next)=>{
 exports.updateOrder=(req,res,next)=>{
     const orderId={...req.body};
     const orderData={...req.body};
+    let allCustomers,allCars;
     OrderRepository.updateOrder(orderId,orderData)
         .then(result=>{
             res.redirect('/order');
+        })
+        .then(customers=>{
+            allCustomers=customers;
+            return CarRepository.getCar()
+        })
+        .then(cars=>{
+            allCars=cars;
         })
         .catch(err=>{
             res.render('pages/order/form', {
                 order: orderData,
                 pageTitle: 'Updating an order',
                 formMode: 'edit',
+                allCustomers: allCustomers,
+                allCars: allCars,
                 btnLabel: 'Updating an order',
                 formAction: '/order/edit',
                 navLocation: 'order',

@@ -23,7 +23,7 @@ exports.getCustomerById = (customerId) => {
 exports.createCustomer = (newCustomerData) => {
     return Customer.create({
         firstName: newCustomerData.firstName,
-        lastName: newCustomerData.lastName == "" ? null : newCustomerData.lastName,
+        lastName: newCustomerData.lastName,
         email: newCustomerData.email
     });
 };

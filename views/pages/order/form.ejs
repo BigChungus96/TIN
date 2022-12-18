@@ -9,12 +9,12 @@
 
         <label for="customer_id">Customer: <span class="symbol-required">*</span></label>
         <select id="customer_id" name="customer_id" required
-                class="<%= validationErrors.find(e => e.path.includes('customer')) ? 'error-input' : '' %>"
+                class="<%= validationErrors.find(e => e.path.includes('customer_id')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
             <option value="" selected>--Choose customer--</option>
             <% for(let i = 0;i < allCustomers.length;i++){let customer = allCustomers[i]; %>
             <option value="<%= customer._id %>" label="<%= customer.firstName + ' ' + customer.lastName %>"
-                    <%= (customer._id.toString() == order.customer_id.toString()) ? 'selected' : '' %>></option>
+                    <%= (customer._id.toString() == order.customer_id) ? 'selected' : '' %>></option>
             <% } %>
         </select>
         <span id="errorCustomer" class="errors-text">
@@ -26,12 +26,12 @@
 
         <label for="car_id">Car: <span class="symbol-required">*</span></label>
         <select name="car_id" id="car_id" required
-                class="<%= validationErrors.find(e => e.path.includes('car')) ? 'error-input' : '' %>"
+                class="<%= validationErrors.find(e => e.path.includes('car_id')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
             <option value="" selected>--Choose car--</option>
             <% for(let i = 0;i < allCars.length;i++){let car = allCars[i]; %>
             <option value="<%= car._id %>" label="<%= car.carBrand + ' ' + car.carModel %>"
-                    <%= (car._id.toString() == order.car_id.toString()) ? 'selected' : '' %>></option>
+                    <%= (car._id.toString() == order.car_id) ? 'selected' : '' %>></option>
             <% } %>
         </select>
         <span id="errorCar" class="errors-text">
@@ -73,15 +73,15 @@
                 <%= validationErrors.find(e => e.path.includes('price')).message %>
             <% } %>
         </span>
-    </form>
+
     <% if(formMode == 'showDetails'){ %>
-        <div>
-            <a href="/order/edit/<%= order._id %>" class="button-edit">Edit</a>
+        <div class="section-buttons">
+            <a href="/order/edit/<%= order._id %>" class="list-actions-button-edit">Edit</a>
         </div>
     <% } %>
 
     <!--        details....customer,car,dateFrom,dateTo,price-->
-    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+
         <div class="form-buttons">
             <p id="errorsSummary" class="errors-text"></p>
             <% if(formMode != 'showDetails'){ %>
