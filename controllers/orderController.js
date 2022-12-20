@@ -88,16 +88,17 @@ exports.addOrder=(req,res,next)=>{
     const orderData={...req.body};
     let allCustomers,allCars;
 
-    OrderRepository.createOrder(orderData)
-        .then(result=>{
-            res.redirect('/order');
-        })
+    CustomerRepository.getCustomer()
         .then(customers=>{
             allCustomers=customers;
-            return CarRepository.getCar()
+            return CarRepository.getCar();
         })
         .then(cars=>{
             allCars=cars;
+            return OrderRepository.createOrder(orderData)
+        })
+        .then(result=>{
+            res.redirect('/order');
         })
         .catch(err => {
             res.render('pages/order/form', {
@@ -114,27 +115,29 @@ exports.addOrder=(req,res,next)=>{
         });
 };
 exports.updateOrder=(req,res,next)=>{
-    const orderId={...req.body};
+    const orderId=req.body._id;
     const orderData={...req.body};
     let allCustomers,allCars;
-    OrderRepository.updateOrder(orderId,orderData)
-        .then(result=>{
-            res.redirect('/order');
-        })
+
+    CustomerRepository.getCustomer()
         .then(customers=>{
             allCustomers=customers;
-            return CarRepository.getCar()
+            return CarRepository.getCar();
         })
         .then(cars=>{
             allCars=cars;
+            return OrderRepository.updateOrder(orderId,orderData)
+        })
+        .then(result=>{
+            res.redirect('/order');
         })
         .catch(err=>{
             res.render('pages/order/form', {
                 order: orderData,
-                pageTitle: 'Updating an order',
-                formMode: 'edit',
                 allCustomers: allCustomers,
                 allCars: allCars,
+                pageTitle: 'Updating an order',
+                formMode: 'edit',
                 btnLabel: 'Updating an order',
                 formAction: '/order/edit',
                 navLocation: 'order',
@@ -142,6 +145,7 @@ exports.updateOrder=(req,res,next)=>{
             });
         });
 };
+
 exports.deleteOrder=(req,res,next)=>{
     const orderId=req.params.orderId;
     OrderRepository.deleteOrder(orderId)

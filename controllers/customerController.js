@@ -15,7 +15,7 @@ exports.showAddCustomerForm = (req, res, next) => {
         pageTitle: 'New Customer',
         formMode: 'createNew',
         btnLabel: 'Add Customer',
-        formAction: 'customer/add',
+        formAction: '/customer/add',
         navLocation: 'customer',
         validationErrors: []
     });
@@ -65,12 +65,19 @@ exports.addCustomer=(req,res,next)=>{
                 formAction: '/customer/add',
                 navLocation: 'customer',
                 validationErrors: err.errors
+
+
+                //     .forEach(e=>{
+                //     if(e.path.includes('email')&& e.type=='unique violation'){
+                //         e.message="Podany adres email jest już używany";
+                //     }
+                // })
             });
         });
 };
 exports.updateCustomer=(req,res,next)=>{
-    const customerData={...req.body};
     const customerId=req.body._id;
+    const customerData={...req.body};
     CustomerRepository.updateCustomer(customerId, customerData)
         .then(result=>{
             res.redirect('/customer');
@@ -84,8 +91,13 @@ exports.updateCustomer=(req,res,next)=>{
                 formAction: '/customer/edit',
                 navLocation: 'customer',
                 validationErrors: err.errors
-            })
-        })
+                // validationErrors: err.errors.forEach(e=>{
+                //     if(e.path.includes('email')&& e.type=='unique violation'){
+                //         e.message="Podany adres email jest już używany";
+                //     }
+                // })
+            });
+        });
 };
 exports.deleteCustomer=(req,res,next)=>{
     const customerId=req.params.customerId;

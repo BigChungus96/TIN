@@ -18,7 +18,7 @@ const Car = sequelize.define('Car', {
             len: {
                 args: [2, 60],
                 msg: "Pole powinno zawierać od 2 do 60 znaków"
-            },
+            }
         }
     },
     carModel: {
@@ -43,7 +43,7 @@ const Car = sequelize.define('Car', {
                 msg: "Pole powinno zawierać 4 cyfry"
             },
             isNumeric: {
-                msg: "Pole powinno być"
+                msg: "Pole powinno być liczbą"
             }
         }
     }

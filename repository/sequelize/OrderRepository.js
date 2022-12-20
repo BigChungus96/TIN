@@ -5,7 +5,8 @@ const Car = require('../../model/sequelize/Car');
 const Order = require('../../model/sequelize/Order');
 
 exports.getOrder = () => {
-    return Order.findAll({include: [
+    return Order.findAll({
+        include: [
             {
                 model: Customer,
                 as: 'customer'
@@ -17,7 +18,8 @@ exports.getOrder = () => {
     });
 };
 exports.getOrderById = (orderId) => {
-    return Order.findByPk(orderId, {include: [
+    return Order.findByPk(orderId, {
+        include: [
             {
                 model: Customer,
                 as: 'customer'
@@ -41,7 +43,9 @@ exports.createOrder = (data) => {
 };
 
 exports.updateOrder = (orderId, data) => {
-    return Order.update(data, {where: {_id: orderId}});
+    return Order.update(data, {
+        where: {_id: orderId}
+    });
 }
 
 exports.deleteOrder = (orderId) => {

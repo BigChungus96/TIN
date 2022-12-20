@@ -70,6 +70,7 @@ exports.addCar = (req, res, next) => {
 exports.updateCar = (req, res, next) => {
     const carId = req.body._id;
     const carData = {...req.body};
+
     CarRepository.updateCar(carId, carData)
         .then(result => {
             res.redirect('/car');
@@ -82,7 +83,7 @@ exports.updateCar = (req, res, next) => {
                 btnLabel: 'Updating a car',
                 formAction: '/car/edit',
                 navLocation: 'car',
-                validationErrors: err.errors
+                validationErrors:err.errors
             });
         });
 };

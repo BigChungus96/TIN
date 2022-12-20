@@ -1,6 +1,6 @@
 function validateForm(){
-    const customerInput=document.getElementById('customer');
-    const carInput=document.getElementById('car');
+    const customerInput=document.getElementById('customer_id');
+    const carInput=document.getElementById('car_id');
     const dateFromInput=document.getElementById('dateFrom');
     const dateToInput=document.getElementById('dateTo');
     const priceInput=document.getElementById('price');
