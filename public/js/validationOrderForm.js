@@ -78,10 +78,10 @@ function validateForm(){
         valid=false;
         priceInput.classList.add("error-input");
         errorPrice.innerText="Pole powinno być liczbą";
-    }else if(!checkNumberRange(priceInput.value,0,1_000_000)){
+    }else if(!checkNumberRange(priceInput.value,0,999_999)){
         valid=false;
         priceInput.classList.add("error-input");
-        errorPrice.innerText="Pole powinno być liczbą w zakresie od 0 do 1.000.000"
+        errorPrice.innerText="Pole powinno być liczbą w zakresie od 0 do 999.999"
     }
 
     if(!valid){

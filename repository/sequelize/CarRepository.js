@@ -31,7 +31,7 @@ exports.updateCar = (carId, carData) => {
     const carBrand = carData.carBrand;
     const carModel = carData.carModel;
     const year = carData.year == "" ? null : carData.year;
-    return Car.update(carData, {where: {_id: carId}});
+    return Car.update({carBrand,carModel,year},{where:{_id: carId}});
 };
 
 exports.deleteCar = (carId) => {

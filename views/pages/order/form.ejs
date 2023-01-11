@@ -3,7 +3,9 @@
     <script type="application/javascript" src="/js/validationOrderForm.js"></script>
     <script type="application/javascript" src="/js/validationCommon.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm()">
+
+<!--    onsubmit="return validateForm()"-->
+    <form class="form" method="post" action="<%= formAction %>" novalidate>
 
         <input type="hidden" name="_id" value="<%= order._id %>">
 
@@ -64,7 +66,7 @@
         </span>
 
         <label for="price">Price: <span class="symbol-required">*</span></label>
-        <input type="number" name="price" id="price" placeholder="0 - 1.000.000" required value="<%= order.price %>"
+        <input type="text" name="price" id="price" placeholder="0 - 1.000.000" required value="<%= order.price %>"
                class="<%= validationErrors.find(e => e.path.includes('price')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>
         />
@@ -81,7 +83,12 @@
     <% } %>
 
         <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text"></p>
+            <p id="errorsSummary" class="errors-text">
+                <% if (validationErrors.find(e => e.path)) { %>
+                    <%= 'Formularz zawiera błędy' %>
+                <% } %>
+            </p>
+
             <% if(formMode != 'showDetails'){ %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
                 <a class="form-button-cancel" href="/order">Cancel</a>

@@ -18,6 +18,9 @@ function checkRequired(value){
     return true;
 }
 function checkTextLengthRange(value,min,max){
+    if(value.length===0){
+        return true;
+    }
     if(!value){
         return false;
     }
@@ -40,6 +43,9 @@ function checkEmail(value){
     return re.test(value);
 }
 function checkNumber(value){
+    if(value.length===0){
+        return true;
+    }
     if(!value){
         return false;
     }

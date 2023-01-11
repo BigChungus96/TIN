@@ -5,8 +5,8 @@
     <h2>
         <%= pageTitle %>
     </h2>
-
-    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm()">
+    <!--    onsubmit="return validateForm()"-->
+    <form class="form" method="post" action="<%= formAction %>" novalidate >
 
         <input type="hidden" name="_id" value="<%= customer._id %>">
 
@@ -48,7 +48,11 @@
         <% } %>
 
         <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text"></p>
+            <p id="errorsSummary" class="errors-text">
+                <% if (validationErrors.find(e => e.path)) { %>
+                    <%= 'Formularz zawiera błędy' %>
+                <% } %>
+            </p>
 
             <% if(formMode != 'showDetails'){ %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>

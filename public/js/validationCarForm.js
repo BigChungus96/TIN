@@ -31,17 +31,25 @@ function validateForm(){
         carModelInput.classList.add("error-input");
         errorCarModel.innerText="Pole powinno zawierać od 2 do 60 znaków";
     }
-//year
-    if(yearInput.value!=null)
-        if(!checkNumber(yearInput.value)){
-            valid=false;
+//year yearInput.value.length!==0
+console.log(yearInput.value)
+
+        if (!checkNumber(yearInput.value)) {
+            valid = false;
             yearInput.classList.add("error-input");
-            errorYear.innerText="Pole powinno być liczbą";
-        }else if(!checkTextLengthRange(yearInput.value,4,4)){
-            valid=false;
-            yearInput.classList.add("error-input");
-            errorYear.innerText="Pole powinno byc 4-cyfrową liczbą";
+            errorYear.innerText = "Pole powinno być liczbą";
         }
+        else if (!checkTextLengthRange(yearInput.value, 4, 4)) {
+            valid = false;
+            yearInput.classList.add("error-input");
+            errorYear.innerText = "Pole powinno byc 4-cyfrową liczbą";
+        }
+        if(yearInput.value<0){
+            valid=false;
+            yearInput.classList.add("error-input");
+            errorYear.innerText = "Pole nie może być ujemne";
+        }
+
     if(!valid){
         errorsSummary.innerText="Formularz zawiera błędy";
     }
