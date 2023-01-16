@@ -4,6 +4,10 @@ const Customer = require('../../model/sequelize/Customer');
 const Car = require('../../model/sequelize/Car');
 const Order = require('../../model/sequelize/Order');
 
+const authUtil=require('../../util/authUtils');
+const passHash=authUtil.hashPassword('12345');
+
+
 module.exports = () => {
     Customer.hasMany(Order, {as: 'order', foreignKey: {
         name: 'customer_id', allowNull: false
@@ -29,9 +33,9 @@ module.exports = () => {
         .then(customers => {
             if (!customers || customers.length === 0) {
                 return Customer.bulkCreate([
-                    {firstName: 'Jan', lastName: 'Kowalski', email: 'jan.kowalski@carrental.com'},
-                    {firstName: 'Szymon', lastName: 'Godziek', email: 'szymon.godziek@carrental.com'},
-                    {firstName: 'Aaron', lastName: 'Gwin', email: 'aaron.gwin@carrental.com'}
+                    {firstName: 'Jan', lastName: 'Kowalski', email: 'jan.kowalski@carrental.com',password: passHash},
+                    {firstName: 'Szymon', lastName: 'Godziek', email: 'szymon.godziek@carrental.com',password: passHash},
+                    {firstName: 'Aaron', lastName: 'Gwin', email: 'aaron.gwin@carrental.com',password: passHash}
                 ])
                     .then(() => {
                         return Customer.findAll();

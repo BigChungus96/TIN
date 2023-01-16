@@ -1,0 +1,58 @@
+{
+  "main-page": {
+    "content": "Main Page"
+  },
+  "nav": {
+    "main-page": "Main page",
+    "employees": "Customers",
+    "departments": "Cars",
+    "employments": "Orders"
+  },
+  "list": {
+    "actions": {
+      "title": "Actions",
+      "details": "Details",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "form": {
+    "actions": {
+      "return": "Return",
+      "edit": "Edit",
+      "cancel": "Cancel"
+    }
+  },
+  "cus": {
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email"
+    },
+    "list": {
+      "title": "Customers",
+      "addNew": "Add new customer",
+      "noData": "No customers in database",
+      "pageTitle": "List of customers"
+    },
+    "form": {
+      "order": "History of orders",
+      "add": {
+        "pageTitle": "Adding a new customer",
+        "btnLabel": "Add the customer",
+        "confirm": {
+          "header": "Confirmation",
+          "text": "The new customer has been successfully created"
+        }
+      },
+      "edit": {
+        "pageTitle": "Editing a customer",
+        "btnLabel": "Save changes",
+        "confirm": {
+          "header": "Confirmation",
+          "text": "The Customer has been successfully updated"
+        }
+      }
+    }
+  }
+}

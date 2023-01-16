@@ -1,0 +1,58 @@
+{
+  "main-page": {
+    "content": "Strona główna"
+  },
+  "nav": {
+    "main-page": "Strona główna",
+    "employees": "Klienci",
+    "departments": "Samochody",
+    "employments": "Zamówienia"
+  },
+  "list": {
+    "actions": {
+      "title": "Akcje",
+      "details": "Szczegóły",
+      "edit": "Edytuj",
+      "delete": "Usuń"
+    }
+  },
+  "form": {
+    "actions": {
+      "return": "Powrót",
+      "edit": "Edytuj",
+      "cancel": "Anuluj"
+    }
+  },
+  "cus": {
+    "fields": {
+      "firstName": "Imię",
+      "lastName": "Nazwisko",
+      "email": "Email"
+    },
+    "list": {
+      "title": "Klient",
+      "addNew": "Dodaj nowego klienta",
+      "noData": "Brak klientów w bazie",
+      "pageTitle": "Lista klientów"
+    },
+    "form": {
+      "employment": "Historia zamówień",
+      "add": {
+        "pageTitle": "Dodawanie klienta",
+        "btnLabel": "Dodaj klienta",
+        "confirm": {
+          "header": "Potwierdzenie operacji",
+          "text": "Pomyślnie dodano klienta"
+        }
+      },
+      "edit": {
+        "pageTitle": "Edycja klienta",
+        "btnLabel": "Zapisz zmiany",
+        "confirm": {
+          "header": "Potwierdzenie operacji",
+          "text": "Pomyślnie zaktualizowano klienta"
+        }
+      }
+    }
+  }
+}

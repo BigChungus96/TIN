@@ -1,13 +1,13 @@
 <%- include('../../fragments/header.ejs')%>
         <main>
-            <h2>Customers List</h2>
+            <h2><%=_('cus.list.title')%></h2>
             <table class="table-list">
                 <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th class="hideme">E-mail</th>
-                        <th>Action</th>
+                        <th><%=_('cus.fields.firstName')%></th>
+                        <th><%=_('cus.fields.lastName')%></th>
+                        <th class="hideme"><%=_('cus.fields.email')%></th>
+                        <th><%=_('list.actions.title')%></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +27,6 @@
                 <%}%>
                 </tbody>
             </table>
-            <p><a href="customer/add" class="button-add">Add new customer</a></p>
+            <p><a href="customer/add" class="button-add"><%=_('cus.list.addNew')%></a></p>
         </main>
 <%- include('../../fragments/footer.ejs')%>

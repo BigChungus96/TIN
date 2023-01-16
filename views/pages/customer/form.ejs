@@ -10,7 +10,7 @@
 
         <input type="hidden" name="_id" value="<%= customer._id %>">
 
-        <label for="firstName">First Name: <span class="symbol-required">*</span></label>
+        <label for="firstName"><%=_('cus.fields.firstName')%>: <span class="symbol-required">*</span></label>
         <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= customer.firstName %>"
                class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
@@ -20,7 +20,7 @@
             <% } %>
         </span>
 
-        <label for="lastName">Last Name: <span class="symbol-required">*</span></label>
+        <label for="lastName"><%=_('cus.fields.lastName')%>: <span class="symbol-required">*</span></label>
         <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= customer.lastName %>"
                class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
@@ -30,7 +30,7 @@
             <% } %>
         </span>
 
-        <label for="email">Email: <span class="symbol-required">*</span></label>
+        <label for="email"><%=_('cus.fields.email')%>: <span class="symbol-required">*</span></label>
         <input type="text" name="email" id="email" placeholder="np. nazwa@strona.pl" value="<%= customer.email %>"
                class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
@@ -43,7 +43,7 @@
         <% if(formMode == 'showDetails'){ %>
             <div class="section-buttons">
                 <a class="list-actions-button-edit" href="/customer/edit/<%= customer._id %>"
-                   class="button-edit">Edit</a>
+                   class="button-edit"><%=_('form.actions.edit')%></a>
             </div>
         <% } %>
 
@@ -56,9 +56,9 @@
 
             <% if(formMode != 'showDetails'){ %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
-                <a class="form-button-cancel" href="/customer">Cancel</a>
+                <a class="form-button-cancel" href="/customer"><%=_('form.actions.cancel')%></a>
             <% }else{ %>
-                <a class="form-button-cancel" href="/customer">Back</a>
+                <a class="form-button-cancel" href="/customer"><%=_('form.actions.return')%></a>
             <% } %>
         </div>
     </form>

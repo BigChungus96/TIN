@@ -40,3 +40,9 @@ exports.deleteCustomer = (customerId) => {
         where: {_id: customerId}
     });
 };
+
+exports.findByEmail=(email)=>{
+    return Customer.findOne({
+        where: {email:email}
+    });
+}

@@ -8,15 +8,35 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
 </head>
 <body>
+<% if(!loggedUser){%>
+    <div id="login">
+        <h5>Logowanie</h5>
+        <form method="post" action="/login" novalidation>
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" name="email">
+
+            <label for="loginPassword">Hasło:</label>
+            <input type="password" id="loginPassword" name="password">
+
+            <input type="submit" value="Zaloguj się">
+            <span id="loginErrors"><%=loginError?loginError:''%></span>
+        </form>
+    </div>
+<%}else{%>
+    <span>Jesteś zalogowany jako:<%=loggedUser.firstName+""+loggedUser.lastName%></span>
+    <a href="/logout">Wyloguj się</a>
+<%}%>
 <header>
     <h1>Car Rental</h1>
     <img src="../../images/carrentallogo.jpg" alt="Car Rental Logo">
 </header>
 <nav>
     <ul>
+        <% if(loggedUser){%>
         <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Main Page</a></li>
         <li><a href="/customer" class="<%= navLocation == 'customer' ? 'active' : ''%>">Customer</a></li>
         <li><a href="/order" class="<%= navLocation == 'order' ? 'active' : ''%>">Order</a></li>
         <li><a href="/car" class="<%= navLocation == 'car' ? 'active' : ''%>">Car</a></li>
+        <%}%>
     </ul>
 </nav>

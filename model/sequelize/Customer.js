@@ -50,6 +50,19 @@ const Customer = sequelize.define('Customer', {
                 msg: 'Pole powinno zawierać prawidłowy adres email'
             }
         }
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            },
+            len: {
+                args: [1, 60],
+                msg: "Pole powinno zawierać od 1 do 60 znaków"
+            }
+        }
     }
 });
 module.exports = Customer;
