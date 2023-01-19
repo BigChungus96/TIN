@@ -29,3 +29,40 @@ exports.logout=(req,res,next)=>{
     req.session.loggedUser=undefined;
     res.redirect('/');
 }
+exports.registerForm = (req, res, next) => {
+    res.render('pages/customer/form', {
+        customer: {},
+        pageTitle: 'Nowy klient',
+        formMode: 'createNew',
+        btnLabel: 'Dodaj klienta',
+        formAction: '/register',
+        navLocation: 'rejestracja',
+        validationErrors: []
+    })
+}
+
+exports.register = (req, res, next) => {
+    const cus = {...req.body};
+    CustomerRepository.createCustomer(cus)
+        .then(result => {
+            res.render('index', {
+                comment: true,
+                comentColor: 'green',
+                commentContent: 'Zarejestrowano! Proszę się zalogować',
+                pageTitle: 'CarRental',
+                navLocation: 'main'
+            })
+        })
+        .catch(err => {
+            console.log(err.errors)
+            res.render('pages/customer/form', {
+                customer: cus,
+                pageTitle: 'Nowy klient',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj klienta',
+                formAction: '/register',
+                navLocation: 'register',
+                validationErrors: err.errors
+            })
+        });
+};

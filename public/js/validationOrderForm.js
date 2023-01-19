@@ -12,6 +12,17 @@ function validateForm(){
     const errorPrice=document.getElementById('errorPrice');
     const errorsSummary=document.getElementById('errorsSummary');
 
+    const reqMessage=document.getElementById('errorMessage-required').innerText;
+    const checkDateMessage=document.getElementById('errorMessage-checkDate').innerText;
+    const checkDateIfAfterMessage=document.getElementById('errorMessage-checkDateIfAfter').innerText;
+    const checkNumberMessage=document.getElementById('errorMessage-checkNumber').innerText;
+    const numberRangeMessage=document.getElementById('errorMessage-numberRange').innerText;
+    const sumMessage=document.getElementById('errorMessage-sumMessage').innerText;
+    const dateDate=document.getElementById('errorMessage-dateDate').innerText;
+
+
+
+
     resetErrors([customerInput,carInput,dateFromInput,dateToInput,priceInput],
         [errorCustomer,errorCar,errorDateFrom,errorDateTo,errorPrice],errorsSummary);
 
@@ -20,13 +31,13 @@ function validateForm(){
     if(!checkRequired(customerInput.value)){
         valid=false;
         customerInput.classList.add("error-input");
-        errorCustomer.innerText="Pole jest wymagane";
+        errorCustomer.innerText=reqMessage;
     }
 //car
     if(!checkRequired(carInput.value)){
         valid=false;
         carInput.classList.add("error-input");
-        errorCar.innerText="Pole jest wymagane";
+        errorCar.innerText=reqMessage;
     }
 //dateFrom
     let nowDate=new Date(),
@@ -44,48 +55,48 @@ function validateForm(){
     if(!checkRequired(dateFromInput.value)){
         valid=false;
         dateFromInput.classList.add("error-input");
-        errorDateFrom.innerText="Pole jest wymagane";
+        errorDateFrom.innerText=reqMessage;
     }else if(!checkDate(dateFromInput.value)){
         valid=false;
         dateFromInput.classList.add("error-input");
-        errorDateFrom.innerText="Pole powinno zawierać datę w formacie yyyy-MM-dd"
+        errorDateFrom.innerText=checkDateMessage;
     }else if(checkDateIfAfter(dateFromInput.value,nowString)){
         valid=false;
         dateFromInput.classList.add("error-input");
-        errorDateFrom.innerText="Data nie może być z przyszłości";
+        errorDateFrom.innerText=checkDateIfAfterMessage;
     }
 //dateTo
     if(!checkRequired(dateToInput.value)){
         valid=false;
         dateToInput.classList.add("error-input");
-        errorDateTo.innerText="Pole jest wymagane";
+        errorDateTo.innerText=reqMessage;
     }else if(!checkDate(dateToInput.value)){
         valid=false;
         dateToInput.classList.add("error-input");
-        errorDateTo.innerText="Pole powinno zawierać datę w formacie yyyy-MM-dd"
+        errorDateTo.innerText=checkDateMessage;
     }else if(checkRequired(dateToInput.value)&&checkDate(dateToInput.value)
                 &&!checkDateIfAfter(dateToInput.value,dateFromInput.value)){
         valid=false;
         dateToInput.classList.add("error-input");
-        errorDateTo.innerText="Data do powinna być poźniejsza niż data od";
+        errorDateTo.innerText=dateDate;
 }
 //price
     if(!checkRequired(priceInput.value)){
         valid=false;
         priceInput.classList.add("error-input");
-        errorPrice.innerText="Pole jest wymagane";
+        errorPrice.innerText=reqMessage;
     }else if(!checkNumber(priceInput.value)){
         valid=false;
         priceInput.classList.add("error-input");
-        errorPrice.innerText="Pole powinno być liczbą";
+        errorPrice.innerText=checkNumberMessage;
     }else if(!checkNumberRange(priceInput.value,0,999_999)){
         valid=false;
         priceInput.classList.add("error-input");
-        errorPrice.innerText="Pole powinno być liczbą w zakresie od 0 do 999.999"
+        errorPrice.innerText=numberRangeMessage;
     }
 
     if(!valid){
-        errorsSummary.innerText="Formularz zawiera błędy";
+        errorsSummary.innerText=sumMessage;
     }
     return valid;
 }

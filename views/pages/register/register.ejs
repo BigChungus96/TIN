@@ -1,0 +1,14 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationCusForm.js"></script>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <h2>
+        <%= pageTitle %>
+    </h2>
+    <!--    onsubmit="return validateForm()"-->
+    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm()">
+    </form>
+
+
+</main>
+<%- include('../../fragments/footer.ejs') %>

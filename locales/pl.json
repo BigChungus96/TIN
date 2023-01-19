@@ -1,58 +1,159 @@
 {
-  "main-page": {
-    "content": "Strona główna"
-  },
-  "nav": {
-    "main-page": "Strona główna",
-    "employees": "Klienci",
-    "departments": "Samochody",
-    "employments": "Zamówienia"
-  },
-  "list": {
-    "actions": {
-      "title": "Akcje",
-      "details": "Szczegóły",
-      "edit": "Edytuj",
-      "delete": "Usuń"
-    }
-  },
-  "form": {
-    "actions": {
-      "return": "Powrót",
-      "edit": "Edytuj",
-      "cancel": "Anuluj"
-    }
-  },
-  "cus": {
-    "fields": {
-      "firstName": "Imię",
-      "lastName": "Nazwisko",
-      "email": "Email"
-    },
-    "list": {
-      "title": "Klient",
-      "addNew": "Dodaj nowego klienta",
-      "noData": "Brak klientów w bazie",
-      "pageTitle": "Lista klientów"
-    },
-    "form": {
-      "employment": "Historia zamówień",
-      "add": {
-        "pageTitle": "Dodawanie klienta",
-        "btnLabel": "Dodaj klienta",
-        "confirm": {
-          "header": "Potwierdzenie operacji",
-          "text": "Pomyślnie dodano klienta"
-        }
-      },
-      "edit": {
-        "pageTitle": "Edycja klienta",
-        "btnLabel": "Zapisz zmiany",
-        "confirm": {
-          "header": "Potwierdzenie operacji",
-          "text": "Pomyślnie zaktualizowano klienta"
-        }
-      }
-    }
-  }
+	"main-page": {
+		"content": "Strona główna",
+		"description": "Wypożycz samochód"
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"customers": "Klienci",
+		"cars": "Samochody",
+		"orders": "Zamówienia"
+	},
+	"list": {
+		"actions": {
+			"title": "Akcje",
+			"details": "Szczegóły",
+			"edit": "Edytuj",
+			"delete": "Usuń"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Powrót",
+			"edit": "Edytuj",
+			"cancel": "Anuluj"
+		}
+	},
+	"cus": {
+		"fields": {
+			"firstName": "Imię",
+			"lastName": "Nazwisko",
+			"email": "Email",
+			"password": "Hasło",
+			"phrange": "2-60 znaków",
+			"phmail": "np. nazwa@strona.pl",
+			"phpassword": "***",
+			"log": "Jesteś zalogowany jako: ",
+			"login": "zaloguj się",
+			"logout": "wyloguj się",
+			"logging": "Logowanie"
+		},
+		"list": {
+			"title": "Klient",
+			"addNew": "Dodaj nowego klienta",
+			"noData": "Brak klientów w bazie",
+			"pageTitle": "Lista klientów"
+		},
+		"form": {
+			"order": "Historia zamówień",
+			"add": {
+				"pageTitle": "Dodawanie klienta",
+				"btnLabel": "Dodaj klienta",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano klienta"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja klienta",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano klienta"
+				}
+			},
+			"details": {
+				"pageTitle": "Szczegóły klienta"
+			}
+		}
+	},
+	"car": {
+		"fields": {
+			"carBrand": "Marka",
+			"carModel": "Model",
+			"year": "Rok",
+			"phrange": "2-60 znaków",
+			"phnumber": "4 znaki"
+		},
+		"list": {
+			"title": "Samochód",
+			"addNew": "Dodaj nowy samochód",
+			"noData": "Brak samochodów w bazie",
+			"pageTitle": "Lista samochodów"
+		},
+		"form": {
+			"order": "Historia zamówień",
+			"add": {
+				"pageTitle": "Dodawanie samochodu",
+				"btnLabel": "Dodaj samochód",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano samochód"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja samochodu",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano samochód"
+				}
+			},
+			"details": {
+				"pageTitle": "Szczegóły samochodu"
+			}
+		}
+	},
+	"order": {
+		"fields": {
+			"customer": "Klient",
+			"car": "Samochód",
+			"dateFrom": "Data od",
+			"dateTo": "Data do",
+			"price": "Cena",
+			"chooseCus": "--Wybierz klienta--",
+			"chooseCar": "--Wybierz samochód--"
+		},
+		"list": {
+			"title": "Zamówienie",
+			"addNew": "Dodaj nowe zamówienie",
+			"noData": "Brak zamówień w bazie",
+			"pageTitle": "Lista zamówień"
+		},
+		"form": {
+			"order": "Historia zamówień",
+			"add": {
+				"pageTitle": "Dodawanie zamówienia",
+				"btnLabel": "Dodaj zamówienie",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano zamówienie"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja zamówienia",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano zamówienie"
+				}
+			},
+			"details": {
+				"pageTitle": "Szczegóły zamówienia"
+			}
+		}
+	},
+	"validationMessage": {
+		"fieldRequired": "Pole jest wymagane",
+		"checkDate": "Pole powinno zawierać datę w formacie yyyy-MM-dd",
+		"checkDateIfAfter": "Data nie może być z przyszłości",
+		"checkNumber": "Pole powinno być liczbą",
+		"numberRange": "Pole powinno być liczbą w zakresie od 0 do 999.999",
+		"dateDate": "Data do powinna być poźniejsza niż data od",
+		"sumMessage": "Formularz zawiera błędy",
+		"checkTextLengthRange": "Pole powinno zawierać od 2 do 60 znaków",
+		"checkYearRange": "Pole powinno być 4-cyfrową liczbą",
+		"email": "Pole powinno zawierać prawidłowy adres email",
+		"negative": "Pole nie może być ujemne"
+	}
 }

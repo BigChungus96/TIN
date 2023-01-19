@@ -1,7 +1,7 @@
 const Customer = require("../../model/sequelize/Customer");
 const Car = require("../../model/sequelize/Car");
 const Order = require("../../model/sequelize/Order");
-
+const authUtils=require("../../util/authUtils");
 exports.getCustomer = () => {
     return Customer.findAll();
 };
@@ -24,7 +24,8 @@ exports.createCustomer = (newCustomerData) => {
     return Customer.create({
         firstName: newCustomerData.firstName,
         lastName: newCustomerData.lastName,
-        email: newCustomerData.email
+        email: newCustomerData.email,
+        password:authUtils.hashPassword(newCustomerData.password)
     });
 };
 
@@ -32,6 +33,7 @@ exports.updateCustomer = (customerId, customerData) => {
     const firstName = customerData.firstName;
     const lastName = customerData.lastName;
     const email = customerData.email;
+    customerData.password=authUtils.hashPassword(customerData.password);
     return Customer.update(customerData, {where: {_id: customerId}});
 };
 

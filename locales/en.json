@@ -1,58 +1,159 @@
 {
-  "main-page": {
-    "content": "Main Page"
-  },
-  "nav": {
-    "main-page": "Main page",
-    "employees": "Customers",
-    "departments": "Cars",
-    "employments": "Orders"
-  },
-  "list": {
-    "actions": {
-      "title": "Actions",
-      "details": "Details",
-      "edit": "Edit",
-      "delete": "Delete"
-    }
-  },
-  "form": {
-    "actions": {
-      "return": "Return",
-      "edit": "Edit",
-      "cancel": "Cancel"
-    }
-  },
-  "cus": {
-    "fields": {
-      "firstName": "First name",
-      "lastName": "Last name",
-      "email": "Email"
-    },
-    "list": {
-      "title": "Customers",
-      "addNew": "Add new customer",
-      "noData": "No customers in database",
-      "pageTitle": "List of customers"
-    },
-    "form": {
-      "order": "History of orders",
-      "add": {
-        "pageTitle": "Adding a new customer",
-        "btnLabel": "Add the customer",
-        "confirm": {
-          "header": "Confirmation",
-          "text": "The new customer has been successfully created"
-        }
-      },
-      "edit": {
-        "pageTitle": "Editing a customer",
-        "btnLabel": "Save changes",
-        "confirm": {
-          "header": "Confirmation",
-          "text": "The Customer has been successfully updated"
-        }
-      }
-    }
-  }
+	"main-page": {
+		"content": "Main Page",
+		"description": "Rent a car"
+	},
+	"nav": {
+		"main-page": "Main page",
+		"customers": "Customers",
+		"cars": "Cars",
+		"orders": "Orders"
+	},
+	"list": {
+		"actions": {
+			"title": "Actions",
+			"details": "Details",
+			"edit": "Edit",
+			"delete": "Delete"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Return",
+			"edit": "Edit",
+			"cancel": "Cancel"
+		}
+	},
+	"cus": {
+		"fields": {
+			"firstName": "First name",
+			"lastName": "Last name",
+			"email": "Email",
+			"password": "Password",
+			"phrange": "2-60 characters",
+			"phmail": "ex. name@domain.com",
+			"phpassword": "***",
+			"log": "You are logged as: ",
+			"login": "log in",
+			"logout": "log out",
+			"logging": "Logging"
+		},
+		"list": {
+			"title": "Customers",
+			"addNew": "Add new customer",
+			"noData": "No customers in database",
+			"pageTitle": "List of customers"
+		},
+		"form": {
+			"order": "History of orders",
+			"add": {
+				"pageTitle": "Adding a new customer",
+				"btnLabel": "Add the customer",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new customer has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing a customer",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The Customer has been successfully updated"
+				}
+			},
+			"details": {
+				"pageTitle": "Customer details"
+			}
+		}
+	},
+	"car": {
+		"fields": {
+			"carBrand": "Brand",
+			"carModel": "Model",
+			"year": "Year",
+			"phrange": "2-60 characters",
+			"phnumber": "4 digits"
+		},
+		"list": {
+			"title": "Cars",
+			"addNew": "Add new car",
+			"noData": "No cars in database",
+			"pageTitle": "List of cars"
+		},
+		"form": {
+			"order": "History of orders",
+			"add": {
+				"pageTitle": "Adding a new car",
+				"btnLabel": "Add the car",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new car has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing a car",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The Car has been successfully updated"
+				}
+			},
+			"details": {
+				"pageTitle": "Car details"
+			}
+		}
+	},
+	"order": {
+		"fields": {
+			"customer": "Customer",
+			"car": "Car",
+			"dateFrom": "Date From",
+			"dateTo": "Date To",
+			"price": "Price",
+			"chooseCus": "--Choose customer--",
+			"chooseCar": "--Choose car--"
+		},
+		"list": {
+			"title": "Orders",
+			"addNew": "Add new order",
+			"noData": "No orders in database",
+			"pageTitle": "List of orders"
+		},
+		"form": {
+			"order": "History of orders",
+			"add": {
+				"pageTitle": "Adding a new order",
+				"btnLabel": "Add the order",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new order has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing an order",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The Order has been successfully updated"
+				}
+			},
+			"details": {
+				"pageTitle": "Order details"
+			}
+		}
+	},
+	"validationMessage": {
+		"fieldRequired": "Field is required",
+		"checkDate": "Field should contain date yyyy-MM-dd",
+		"checkDateIfAfter": "Date can not be from the future",
+		"checkNumber": "Field should be a number",
+		"numberRange": "Field should be a number from 0 to 999.999",
+		"dateDate": "Date From can not be later than Date To",
+		"sumMessage": "Form has errors",
+		"checkTextLengthRange": "Field should contain from 2 to 60 characters",
+		"checkYearRange": "Field should be a 4-digit number",
+		"email": "Field should contain correct email address",
+		"negative": "Number can not be below zero"
+	}
 }

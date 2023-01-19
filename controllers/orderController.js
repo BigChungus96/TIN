@@ -7,7 +7,8 @@ exports.showOrderList = (req, res, next) => {
         .then(orders=>{
             res.render('pages/order/list',{
                 orders:orders,
-                navLocation:'order'
+                navLocation:'order',
+                pageTitle: req.__('order.list.pageTitle')
             });
         });
 }
@@ -25,8 +26,8 @@ exports.showAddOrderForm = (req, res, next) => {
                 formMode: 'createNew',
                 allCustomers: allCustomers,
                 allCars: allCars,
-                pageTitle: 'New Order',
-                btnLabel: 'Add Order',
+                pageTitle: req.__('order.form.add.pageTitle'),
+                btnLabel: req.__('order.form.add.btnLabel'),
                 formAction: '/order/add',
                 navLocation: 'order',
                 validationErrors: []
@@ -51,8 +52,8 @@ exports.showEditOrderForm=(req,res,next)=>{
                 formMode:'edit',
                 allCustomers: allCustomers,
                 allCars: allCars,
-                pageTitle:'Order Editing',
-                btnLabel:'Edit Order',
+                pageTitle:req.__('order.form.edit.pageTitle'),
+                btnLabel:req.__('car.form.edit.btnLabel'),
                 formAction:'/order/edit',
                 navLocation:'order',
                 validationErrors: []
@@ -77,7 +78,7 @@ exports.showOrderDetails = (req, res, next) => {
                 formMode:'showDetails',
                 allCustomers: allCustomers,
                 allCars: allCars,
-                pageTitle:'Order Details',
+                pageTitle:req.__('order.form.details.pageTitle'),
                 formAction:'',
                 navLocation:'order',
                 validationErrors: []

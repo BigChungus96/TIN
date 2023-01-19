@@ -5,16 +5,16 @@
     <h2><%= pageTitle %></h2>
 
 <!--    onsubmit="return validateForm()"-->
-    <form class="form" method="post" action="<%= formAction %>" novalidate>
+    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm()">
 
         <input type="hidden" name="_id" value="<%= order._id %>">
 
 
-        <label for="customer_id">Customer: <span class="symbol-required">*</span></label>
+        <label for="customer_id"><%=__('order.fields.customer')%>: <span class="symbol-required">*</span></label>
         <select id="customer_id" name="customer_id" required
                 class="<%= validationErrors.find(e => e.path.includes('customer_id')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
-            <option value="" selected>--Choose customer--</option>
+            <option value="" selected><%=__('order.fields.chooseCus')%></option>
             <% for(let i = 0;i < allCustomers.length;i++){let customer = allCustomers[i]; %>
             <option value="<%= customer._id %>" label="<%= customer.firstName + ' ' + customer.lastName %>"
                     <%= (customer._id.toString() == order.customer_id) ? 'selected' : '' %>></option>
@@ -27,11 +27,11 @@
         </span>
 
 
-        <label for="car_id">Car: <span class="symbol-required">*</span></label>
+        <label for="car_id"><%=__('order.fields.car')%>: <span class="symbol-required">*</span></label>
         <select name="car_id" id="car_id" required
                 class="<%= validationErrors.find(e => e.path.includes('car_id')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
-            <option value="" selected>--Choose car--</option>
+            <option value="" selected><%=__('order.fields.chooseCus')%></option>
             <% for(let i = 0;i < allCars.length;i++){let car = allCars[i]; %>
             <option value="<%= car._id %>" label="<%= car.carBrand + ' ' + car.carModel %>"
                     <%= (car._id.toString() == order.car_id) ? 'selected' : '' %>></option>
@@ -43,7 +43,7 @@
             <% } %>
         </span>
 
-        <label for="dateFrom">Date From: <span class="symbol-required">*</span></label>
+        <label for="dateFrom"><%=__('order.fields.dateFrom')%>: <span class="symbol-required">*</span></label>
         <input type="date" name="dateFrom" required id="dateFrom" value="<%= fmt.formatDate(order.dateFrom) %>"
                class="<%= validationErrors.find(e => e.path.includes('dateFrom')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>
@@ -54,7 +54,7 @@
             <% } %>
         </span>
 
-        <label for="dateTo">Date To: <span class="symbol-required">*</span></label>
+        <label for="dateTo"><%=__('order.fields.dateTo')%>: <span class="symbol-required">*</span></label>
         <input type="date" name="dateTo" id="dateTo" required value="<%= fmt.formatDate(order.dateTo) %>"
                class="<%= validationErrors.find(e => e.path.includes('dateTo')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>
@@ -65,7 +65,7 @@
             <% } %>
         </span>
 
-        <label for="price">Price: <span class="symbol-required">*</span></label>
+        <label for="price"><%=__('order.fields.price')%>: <span class="symbol-required">*</span></label>
         <input type="text" name="price" id="price" placeholder="0 - 1.000.000" required value="<%= order.price %>"
                class="<%= validationErrors.find(e => e.path.includes('price')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>
@@ -76,9 +76,32 @@
             <% } %>
         </span>
 
+        <div style="display:none">
+            <span id="errorMessage-required"><%=__('validationMessage.fieldRequired')%></span>
+        </div>
+        <div style="display:none">
+            <span id="errorMessage-checkDate"><%=__('validationMessage.checkDate')%></span>
+        </div>
+        <div style="display:none">
+            <span id="errorMessage-checkDateIfAfter"><%=__('validationMessage.checkDateIfAfter')%></span>
+        </div>
+        <div style="display:none">
+            <span id="errorMessage-checkNumber"><%=__('validationMessage.checkNumber')%></span>
+        </div>
+        <div style="display:none">
+            <span id="errorMessage-numberRange"><%=__('validationMessage.numberRange')%></span>
+        </div>
+        <div style="display:none">
+            <span id="errorMessage-dateDate"><%=__('validationMessage.dateDate')%></span>
+        </div>
+        <div style="display:none">
+            <span id="errorMessage-sumMessage"><%=__('validationMessage.sumMessage')%></span>
+        </div>
+
     <% if(formMode == 'showDetails'){ %>
         <div class="section-buttons">
-            <a href="/order/edit/<%= order._id %>" class="list-actions-button-edit">Edit</a>
+            <a href="/order/edit/<%= order._id %>"
+               class="list-actions-button-edit"><%=__('form.actions.edit')%></a>
         </div>
     <% } %>
 
@@ -91,9 +114,9 @@
 
             <% if(formMode != 'showDetails'){ %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
-                <a class="form-button-cancel" href="/order">Cancel</a>
+                <a class="form-button-cancel" href="/order"><%=__('form.actions.cancel')%></a>
             <% }else{ %>
-                <a class="form-button-cancel" href="/order">Back</a>
+                <a class="form-button-cancel" href="/order"><%=__('form.actions.return')%></a>
             <% } %>
         </div>
     </form>

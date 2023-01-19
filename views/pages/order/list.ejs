@@ -1,15 +1,17 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Order List</h2>
+    <h2><%=__('order.list.pageTitle')%></h2>
     <table class="table-list">
         <thead>
         <tr>
-            <th>Customer</th>
-            <th>Car</th>
-            <th class="hideme">Date From</th>
-            <th class="hideme">Date To</th>
-            <th>Price</th>
-            <th>Action</th>
+            <th><%=__('order.fields.customer')%></th>
+            <th><%=__('order.fields.car')%></th>
+            <th class="hideme"><%=__('order.fields.dateFrom')%></th>
+            <th class="hideme"><%=__('order.fields.dateTo')%></th>
+            <th><%=__('order.fields.price')%></th>
+            <%if(loggedUser){%>
+            <th><%=__('list.actions.title')%></th>
+            <%}%>
         </tr>
         </thead>
         <tbody>
@@ -20,17 +22,21 @@
             <td class=hideme"><%= fmt.formatDate(order.dateFrom) %></td>
             <td class=hideme"><%= fmt.formatDate(order.dateTo) %></td>
             <td><%= order.price %></td>
+            <%if(loggedUser){%>
             <td>
                 <ul class="list-actions">
-                    <li><a href="/order/details/<%=order._id%>" class="list-actions-button-details">Details</a></li>
-                    <li><a href="/order/edit/<%=order._id%>" class="list-actions-button-edit">Edit</a></li>
-                    <li><a href="/order/delete/<%=order._id%>" class="list-actions-button-delete">Delete</a></li>
+                    <li><a href="/order/details/<%=order._id%>" class="list-actions-button-details"><%=__('list.actions.details')%></a></li>
+                    <li><a href="/order/edit/<%=order._id%>" class="list-actions-button-edit"><%=__('list.actions.edit')%></a></li>
+                    <li><a href="/order/delete/<%=order._id%>" class="list-actions-button-delete"><%=__('list.actions.delete')%></a></li>
                 </ul>
             </td>
+            <%}%>
         </tr>
         <% } %>
         </tbody>
     </table>
-    <p><a href="/order/add" class="button-add">Add new order</a></p>
+    <%if(loggedUser){%>
+    <p><a href="/order/add" class="button-add"><%=__('order.list.addNew')%></a></p>
+    <%}%>
 </main>
 <%- include('../../fragments/footer.ejs') %>

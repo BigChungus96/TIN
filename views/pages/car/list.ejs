@@ -1,13 +1,15 @@
 <%- include('../../fragments/header.ejs')%>
         <main>
-            <h2>Car List</h2>
+            <h2><%=__('car.list.pageTitle')%></h2>
             <table class="table-list">
                 <thead>
                     <tr>
-                        <th>Brand</th>
-                        <th>Model</th>
-                        <th>Year</th>
-                        <th>Action</th>
+                        <th><%=__('car.fields.carBrand')%></th>
+                        <th><%=__('car.fields.carModel')%></th>
+                        <th><%=__('car.fields.year')%></th>
+                        <%if(loggedUser){%>
+                        <th><%=__('list.actions.title')%></th>
+                        <%}%>
                     </tr>
                 </thead>
                 <tbody>
@@ -16,17 +18,21 @@
                         <td><%=car.carBrand%></td>
                         <td><%=car.carModel%></td>
                         <td><%=car.year%></td>
+                        <%if(loggedUser){%>
                         <td>
                             <ul class="list-actions">
-                                <li><a href="/car/details/<%=car._id%>" class="list-actions-button-details">Details</a></li>
-                                <li><a href="/car/edit/<%=car._id%>" class="list-actions-button-edit">Edit</a></li>
-                                <li><a href="/car/delete/<%=car._id%>"class="list-actions-button-delete">Delete</a></li>
+                                <li><a href="/car/details/<%=car._id%>" class="list-actions-button-details"><%=__('list.actions.details')%></a></li>
+                                <li><a href="/car/edit/<%=car._id%>" class="list-actions-button-edit"><%=__('list.actions.edit')%></a></li>
+                                <li><a href="/car/delete/<%=car._id%>"class="list-actions-button-delete"><%=__('list.actions.delete')%></a></li>
                             </ul>
                         </td>
+                        <%}%>
                     </tr>
                 <%}%>
                 </tbody>
             </table>
-            <p><a href="car/add" class="button-add">Add new car</a></p>
+            <%if(loggedUser){%>
+            <p><a href="car/add" class="button-add"><%=__('car.list.addNew')%></a></p>
+            <%}%>
         </main>
 <%- include('../../fragments/footer.ejs')%>

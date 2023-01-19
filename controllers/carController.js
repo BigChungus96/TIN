@@ -5,16 +5,17 @@ exports.showCarList = (req, res, next) => {
         .then(cars => {
             res.render('pages/car/list', {
                 cars: cars,
-                navLocation: 'car'
+                navLocation: 'car',
+                pageTitle: req.__('car.list.pageTitle')
             });
         });
 }
 exports.showAddCarForm = (req, res, next) => {
     res.render('pages/car/form', {
         car: {},
-        pageTitle: 'New car',
+        pageTitle: req.__('car.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Add a Car',
+        btnLabel: req.__('car.form.add.btnLabel'),
         formAction: '/car/add',
         navLocation: 'car',
         validationErrors: []
@@ -27,8 +28,8 @@ exports.showEditCarForm = (req, res, next) => {
             res.render('pages/car/form', {
                 car: car,
                 formMode: 'edit',
-                pageTitle: 'Car Editing',
-                btnLabel: 'Edit car',
+                pageTitle: req.__('car.form.edit.pageTitle'),
+                btnLabel: req.__('car.form.edit.btnLabel'),
                 formAction: '/car/edit',
                 navLocation: 'car',
                 validationErrors: []
@@ -42,7 +43,7 @@ exports.showCarDetails = (req, res, next) => {
             res.render('pages/car/form', {
                 car: car,
                 formMode: 'showDetails',
-                pageTitle: 'Car Details',
+                pageTitle: req.__('car.form.details.pageTitle'),
                 formAction: '',
                 navLocation: 'car',
                 validationErrors: []

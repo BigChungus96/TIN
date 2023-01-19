@@ -10,8 +10,8 @@
 
         <input type="hidden" name="_id" value="<%= car._id %>">
 
-        <label for="carBrand">Car Brand: <span class="symbol-required">*</span></label>
-        <input type="text" name="carBrand" id="carBrand" placeholder="2-60 znaków" value="<%= car.carBrand %>"
+        <label for="carBrand"><%=__('car.fields.carBrand')%>: <span class="symbol-required">*</span></label>
+        <input type="text" name="carBrand" id="carBrand" placeholder="<%=__('car.fields.phrange')%>" value="<%= car.carBrand %>"
                class="<%= validationErrors.find(e => e.path.includes('carBrand')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorCarBrand" class="errors-text">
@@ -20,8 +20,8 @@
             <% } %>
         </span>
 
-        <label for="carModel">Model: <span class="symbol-required">*</span></label>
-        <input type="text" name="carModel" id="carModel" placeholder="2-60 znaków" value="<%= car.carModel %>"
+        <label for="carModel"><%=__('car.fields.carModel')%>: <span class="symbol-required">*</span></label>
+        <input type="text" name="carModel" id="carModel" placeholder="<%=__('car.fields.phrange')%>" value="<%= car.carModel %>"
                class="<%= validationErrors.find(e => e.path.includes('carModel')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorCarModel" class="errors-text">
@@ -30,8 +30,8 @@
             <% } %>
         </span>
 
-        <label for="year">Year of Production:</label>
-        <input type="text" name="year" id="year" placeholder="4 znaki" value="<%= car.year %>"
+        <label for="year"><%=__('car.fields.year')%>:</label>
+        <input type="text" name="year" id="year" placeholder="<%=__('car.fields.phnumber')%>" value="<%= car.year %>"
                class="<%= (validationErrors.find(e => e.path.includes('year'))) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorYear" class="errors-text">
@@ -40,9 +40,29 @@
             <% } %>
         </span>
 
+        <div style="display:none">
+            <span id="errorMessage-required"><%=__('validationMessage.fieldRequired')%></span>
+        </div>
+        <div style="display:none">
+            <span id="errorMessage-checkTextLengthRange"><%=__('validationMessage.checkTextLengthRange')%></span>
+        </div>
+        <div style="display:none">
+            <span id="errorMessage-checkNumber"><%=__('validationMessage.checkNumber')%></span>
+        </div>
+        <div style="display:none">
+            <span id="errorMessage-checkNegative"><%=__('validationMessage.negative')%></span>
+        </div>
+        <div style="display:none">
+            <span id="errorMessage-checkYearRange"><%=__('validationMessage.checkYearRange')%></span>
+        </div>
+        <div style="display:none">
+            <span id="errorMessage-sumMessage"><%=__('validationMessage.sumMessage')%></span>
+        </div>
+
         <% if(formMode == 'showDetails'){ %>
             <div class="section-buttons">
-                <a class="list-actions-button-edit" href="/car/edit/<%= car._id %>" class="button-edit">Edit</a>
+                <a class="list-actions-button-edit" href="/car/edit/<%= car._id %>"
+                   class="button-edit"><%=__('form.actions.edit')%></a>
             </div>
         <% } %>
 
@@ -55,24 +75,24 @@
 
             <% if(formMode != 'showDetails'){ %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
-                <a href="/car" class="form-button-cancel">Cancel</a>
+                <a href="/car" class="form-button-cancel"><%=__('form.actions.cancel')%></a>
             <% }else{ %>
-                <a class="form-button-cancel" href="/car">Back</a>
+                <a class="form-button-cancel" href="/car"><%=__('form.actions.return')%></a>
             <% } %>
         </div>
     </form>
 
     <% if (formMode == 'showDetails'){ %>
         <h2>
-            Customer Details
+            <%=__('cus.form.order')%>
         </h2>
         <table class="table-list">
             <thead>
             <tr>
-                <th>Customer</th>
-                <th>Date From</th>
-                <th>Date To</th>
-                <th>Price</th>
+                <th><%=__('order.fields.customer')%></th>
+                <th><%=__('order.fields.dateFrom')%></th>
+                <th><%=__('order.fields.dateTo')%></th>
+                <th><%=__('order.fields.price')%></th>
             </tr>
             </thead>
             <tbody>

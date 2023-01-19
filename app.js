@@ -13,6 +13,7 @@ app.use((req,res,next)=>{
     res.locals.fmt=fmt;
     next();
 });
+app.use(cookieParser('secret'));
 const i18n = require('i18n');
 i18n.configure({
     locales: ['pl', 'en'], // języki dostępne w aplikacji. Dla każdego z nich należy utworzyć osobny słownik
@@ -21,7 +22,15 @@ i18n.configure({
     cookie: 'acme-hr-lang', //nazwa cookies, które nasza aplikacja będzie wykorzystywać do przechowania informacji o języku aktualnie wybranym przez użytkownika
 });
 
-app.use(cookieParser('secret'));
+
+app.use(i18n.init);
+app.use((req, res, next) => {
+    if(!res.locals.lang) {
+        const currentLang = req.cookies['acme-hr-lang'];
+        res.locals.lang = currentLang;
+    }
+    next();
+});
 
 const customerRouter=require('./routes/customerRoute');
 const carRouter=require('./routes/carRoute');
@@ -68,9 +77,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/',indexRouter);
-app.use('/customer',authUtils.permitAuthenticatedUser,customerRouter);
-app.use('/car',authUtils.permitAuthenticatedUser,carRouter);
-app.use('/order',authUtils.permitAuthenticatedUser,orderRouter);
+app.use('/customer',customerRouter);
+app.use('/car',carRouter);
+app.use('/order',orderRouter);
 
 app.use('/api/customer',customerApiRouter);
 app.use('/api/car',carApiRouter);

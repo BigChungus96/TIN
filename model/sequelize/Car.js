@@ -38,16 +38,14 @@ const Car = sequelize.define('Car', {
         type: Sequelize.DECIMAL(10, 0),
         allowNull: true,
         validate: {
-            //notEmpty:false,
-
             len: {
                 args: [4, 4],
                 msg: "Pole powinno zawierać 4 cyfry"
             },
-            min: {
-                args: [0],
-                msg: 'Pole nie może przyjąć wartości ujemnej' }
-            ,
+            min:{
+                args:[0],
+                msg: 'Pole nie może przyjąć wartości ujemnej'
+            },
             isNumeric: {
                 msg: "Pole powinno być liczbą"
             }

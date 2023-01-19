@@ -5,16 +5,17 @@ exports.showCustomerList = (req, res, next) => {
         .then(customers => {
             res.render('pages/customer/list', {
                 customers: customers,
-                navLocation: 'customer'
+                navLocation: 'customer',
+                pageTitle: req.__('cus.list.pageTitle')
             });
         });
 }
 exports.showAddCustomerForm = (req, res, next) => {
     res.render('pages/customer/form', {
         customer: {},
-        pageTitle: 'New Customer',
+        pageTitle: req.__('cus.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Add Customer',
+        btnLabel: req.__('cus.form.add.btnLabel'),
         formAction: '/customer/add',
         navLocation: 'customer',
         validationErrors: []
@@ -28,8 +29,8 @@ exports.showEditCustomerForm = (req, res, next) => {
             res.render('pages/customer/form', {
                 customer: customer,
                 formMode: 'edit',
-                pageTitle: 'Customer Editing',
-                btnLabel: 'Edit Customer',
+                pageTitle: req.__('cus.form.edit.pageTitle'),
+                btnLabel: req.__('cus.form.edit.btnLabel'),
                 formAction: '/customer/edit',
                 navLocation: 'customer',
                 validationErrors: []
@@ -43,7 +44,7 @@ exports.showCustomerDetails = (req, res, next) => {
             res.render('pages/customer/form', {
                 customer: customer,
                 formMode: 'showDetails',
-                pageTitle: 'Customer Details',
+                pageTitle: req.__('cus.form.details.pageTitle'),
                 formAction: '',
                 navLocation: 'customer',
                 validationErrors: []
@@ -66,12 +67,6 @@ exports.addCustomer=(req,res,next)=>{
                 navLocation: 'customer',
                 validationErrors: err.errors
 
-
-                //     .forEach(e=>{
-                //     if(e.path.includes('email')&& e.type=='unique violation'){
-                //         e.message="Podany adres email jest już używany";
-                //     }
-                // })
             });
         });
 };
@@ -91,11 +86,6 @@ exports.updateCustomer=(req,res,next)=>{
                 formAction: '/customer/edit',
                 navLocation: 'customer',
                 validationErrors: err.errors
-                // validationErrors: err.errors.forEach(e=>{
-                //     if(e.path.includes('email')&& e.type=='unique violation'){
-                //         e.message="Podany adres email jest już używany";
-                //     }
-                // })
             });
         });
 };
