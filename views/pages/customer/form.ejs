@@ -5,8 +5,8 @@
     <h2>
         <%= pageTitle %>
     </h2>
-    <!--    onsubmit="return validateForm()"-->
-    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm()">
+
+    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm()" >
 
         <input type="hidden" name="_id" value="<%= customer._id %>">
 
@@ -16,7 +16,7 @@
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorFirstName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
-                <%= validationErrors.find(e => e.path.includes('firstName')).message %>
+                <%= __(validationErrors.find(e => e.path.includes('firstName')).message) %>
             <% } %>
         </span>
 
@@ -26,7 +26,7 @@
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorLastName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
-                <%= validationErrors.find(e => e.path.includes('lastName')).message %>
+                <%= __(validationErrors.find(e => e.path.includes('lastName')).message)%>
             <% } %>
         </span>
 
@@ -36,18 +36,17 @@
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorEmail" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('email'))) { %>
-                <%= validationErrors.find(e => e.path.includes('email')).message %>
+                <%= __(validationErrors.find(e => e.path.includes('email')).message) %>
             <% } %>
         </span>
 
         <label for="password"> <%=__('cus.fields.password')%>:<span class="symbol-required">*</span></label>
-        <input type="password" name="password" id="password" placeholder="<%=__('cus.fields.phpassword')%>"
-               value="<%=customer.password%>"
+        <input type="password" name="password" id="password" placeholder="<%=__('cus.fields.phpassword')%>" value="<%=customer.password%>"
                class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorPassword" class="errors-text">
         <% if (validationErrors.find(e => e.path.includes('password'))) { %>
-            <%= validationErrors.find(e => e.path.includes('password')).message %>
+            <%= __(validationErrors.find(e => e.path.includes('password')).message) %>
         <% } %>
         </span>
 

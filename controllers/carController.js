@@ -59,9 +59,9 @@ exports.addCar = (req, res, next) => {
         .catch(err => {
             res.render('pages/car/form', {
                 car: carData,
-                pageTitle: 'Adding a car',
+                pageTitle: req.__('car.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Add a car',
+                btnLabel: req.__('car.form.add.btnLabel'),
                 formAction: '/car/add',
                 navLocation: 'car',
                 validationErrors: err.errors
@@ -79,9 +79,9 @@ exports.updateCar = (req, res, next) => {
         .catch(err=>{
             res.render('pages/car/form', {
                 car: carData,
-                pageTitle: 'Updating a car',
+                pageTitle: req.__('car.form.edit.pageTitle'),
                 formMode: 'edit',
-                btnLabel: 'Updating a car',
+                btnLabel: req.__('car.form.edit.btnLabel'),
                 formAction: '/car/edit',
                 navLocation: 'car',
                 validationErrors:err.errors

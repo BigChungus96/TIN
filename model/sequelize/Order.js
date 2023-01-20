@@ -13,7 +13,7 @@ const Order = sequelize.define('Order', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             }
         }
     },
@@ -22,7 +22,7 @@ const Order = sequelize.define('Order', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             }
         }
     },
@@ -31,7 +31,7 @@ const Order = sequelize.define('Order', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
         }
     },
@@ -40,11 +40,11 @@ const Order = sequelize.define('Order', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             isAfterFrom: function(dateTo) {
                 if(this.dateFrom>dateTo){
-                    throw new Error("DateTo nie może być wcześniejsza niż DateFrom");
+                    throw new Error("validationMessage.dateDate");
                 }
             }
         }
@@ -54,18 +54,18 @@ const Order = sequelize.define('Order', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             len: {
                 args: [0, 6],
-                msg: "Pole powinno być liczbą w zakresie od 0 do 999.999"
+                msg: "validationMessage.numberRange"
             },
             min:{
                 args:[0],
-                msg: 'pole nie może przyjąć wartości ujemnej'
+                msg: "validationMessage.negative"
             },
             isNumeric: {
-                msg: "Pole powinno zawierać liczbę"
+                msg: "validationMessage.checkNumber"
             }
         }
     }

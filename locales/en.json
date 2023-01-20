@@ -7,7 +7,8 @@
 		"main-page": "Main page",
 		"customers": "Customers",
 		"cars": "Cars",
-		"orders": "Orders"
+		"orders": "Orders",
+		"register": "Register"
 	},
 	"list": {
 		"actions": {
@@ -36,7 +37,8 @@
 			"log": "You are logged as: ",
 			"login": "log in",
 			"logout": "log out",
-			"logging": "Logging"
+			"logging": "Logging",
+			"unique": "Given email is already taken"
 		},
 		"list": {
 			"title": "Customers",

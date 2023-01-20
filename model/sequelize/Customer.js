@@ -13,11 +13,11 @@ const Customer = sequelize.define('Customer', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             len: {
                 args: [2, 60],
-                msg: "Pole powinno zawierać od 2 do 60 znaków"
+                msg: "validationMessage.checkTextLengthRange"
             },
         }
     },
@@ -26,11 +26,11 @@ const Customer = sequelize.define('Customer', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             len: {
                 args: [2, 60],
-                msg: "Pole powinno zawierać od 2 do 60 znaków"
+                msg: "validationMessage.checkTextLengthRange"
             },
         }
     },
@@ -40,14 +40,14 @@ const Customer = sequelize.define('Customer', {
         unique: true,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             len: {
                 args: [5, 60],
-                msg: "Pole powinno zawierać od 5 do 60 znaków"
+                msg: "validationMessage.checkTextLengthRange"
             },
             isEmail: {
-                msg: 'Pole powinno zawierać prawidłowy adres email'
+                msg: "validationMessage.email"
             }
         }
     },
@@ -56,11 +56,11 @@ const Customer = sequelize.define('Customer', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             len: {
                 args: [2, 60],
-                msg: "Pole powinno zawierać od 1 do 60 znaków"
+                msg: "validationMessage.checkTextLengthRange"
             }
         }
     }

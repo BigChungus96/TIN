@@ -60,13 +60,12 @@ exports.addCustomer=(req,res,next)=>{
         .catch(err => {
             res.render('pages/customer/form', {
                 customer: customerData,
-                pageTitle: 'Adding a customer',
+                pageTitle: req.__('cus.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Add a customer',
+                btnLabel: req.__('cus.form.add.btnLabel'),
                 formAction: '/customer/add',
                 navLocation: 'customer',
                 validationErrors: err.errors
-
             });
         });
 };
@@ -80,9 +79,9 @@ exports.updateCustomer=(req,res,next)=>{
         .catch(err=>{
             res.render('pages/customer/form', {
                 customer: customerData,
-                pageTitle: 'Updating a customer',
+                pageTitle: req.__('cus.form.edit.pageTitle'),
                 formMode: 'edit',
-                btnLabel: 'Updating a customer',
+                btnLabel: req.__('cus.form.edit.btnLabel'),
                 formAction: '/customer/edit',
                 navLocation: 'customer',
                 validationErrors: err.errors

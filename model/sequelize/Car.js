@@ -13,11 +13,11 @@ const Car = sequelize.define('Car', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             len: {
                 args: [2, 60],
-                msg: "Pole powinno zawierać od 2 do 60 znaków"
+                msg: "validationMessage.checkTextLengthRange"
             }
         }
     },
@@ -26,11 +26,11 @@ const Car = sequelize.define('Car', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             len: {
                 args: [2, 60],
-                msg: "Pole powinno zawierać od 2 do 60 znaków"
+                msg: "validationMessage.checkTextLengthRange"
             },
         }
     },
@@ -40,14 +40,14 @@ const Car = sequelize.define('Car', {
         validate: {
             len: {
                 args: [4, 4],
-                msg: "Pole powinno zawierać 4 cyfry"
+                msg: "validationMessage.checkYearRange"
             },
             min:{
                 args:[0],
-                msg: 'Pole nie może przyjąć wartości ujemnej'
+                msg: "validationMessage.negative"
             },
             isNumeric: {
-                msg: "Pole powinno być liczbą"
+                msg: "validationMessage.checkNumber"
             }
         }
     }

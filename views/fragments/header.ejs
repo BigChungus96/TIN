@@ -36,7 +36,7 @@
     <ul>
 
         <%if(!loggedUser){%>
-            <li><a href="/register" class="<%= navLocation == 'register' ? 'active' : '' %>">Register</a></li>
+            <li><a href="/register" class="<%= navLocation == 'register' ? 'active' : '' %>"><%=__('nav.register')%></a></li>
         <%}%>
 
             <li><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>"><%= __('nav.main-page') %></a></li>

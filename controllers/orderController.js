@@ -104,11 +104,11 @@ exports.addOrder=(req,res,next)=>{
         .catch(err => {
             res.render('pages/order/form', {
                 order: orderData,
-                pageTitle: 'Adding an order',
+                pageTitle: req.__('order.form.add.pageTitle'),
                 formMode: 'createNew',
                 allCustomers: allCustomers,
                 allCars: allCars,
-                btnLabel: 'Add an order',
+                btnLabel: req.__('order.form.add.btnLabel'),
                 formAction: '/order/add',
                 navLocation: 'order',
                 validationErrors: err.errors
@@ -137,9 +137,9 @@ exports.updateOrder=(req,res,next)=>{
                 order: orderData,
                 allCustomers: allCustomers,
                 allCars: allCars,
-                pageTitle: 'Updating an order',
+                pageTitle: req.__('order.form.edit.pageTitle'),
                 formMode: 'edit',
-                btnLabel: 'Updating an order',
+                btnLabel: req.__('order.form.edit.btnLabel'),
                 formAction: '/order/edit',
                 navLocation: 'order',
                 validationErrors: err.errors

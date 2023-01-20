@@ -7,7 +7,8 @@
 		"main-page": "Strona główna",
 		"customers": "Klienci",
 		"cars": "Samochody",
-		"orders": "Zamówienia"
+		"orders": "Zamówienia",
+		"register": "Rejestracja"
 	},
 	"list": {
 		"actions": {
@@ -36,7 +37,8 @@
 			"log": "Jesteś zalogowany jako: ",
 			"login": "zaloguj się",
 			"logout": "wyloguj się",
-			"logging": "Logowanie"
+			"logging": "Logowanie",
+			"unique": "Podany email jest juź uźywany"
 		},
 		"list": {
 			"title": "Klient",
